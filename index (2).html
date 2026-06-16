@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KJST Achievement · กาญจนาภิเษกวิทยาลัย สุราษฎร์ธานี</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:      #1a3a6b;
+  --navy-dark: #0f2347;
+  --navy-mid:  #2451a0;
+  --navy-soft: #dde6f5;
+  --navy-pale: #eef3fb;
+  --gold:      #c8960c;
+  --gold-warm: #e6b02a;
+  --gold-pale: #fdf4d8;
+  --gold-mist: #fffaee;
+  --gold-deep: #a67a00;
+  --white:     #ffffff;
+  --cream:     #f7f9fc;
+  --border:    #dde4f0;
+  --border-s:  #eaeef8;
+  --txt:       #162040;
+  --txt-mid:   #3a5080;
+  --txt-soft:  #6a80a8;
+  --txt-ghost: #a8bad8;
+  --green:     #2d7d52;
+  --green-p:   #e6f4ec;
+  --rose:      #b84040;
+  --rose-p:    #fceaea;
+  --sh-xs:0 1px 4px rgba(26,58,107,.08);
+  --sh-sm:0 2px 10px rgba(26,58,107,.10);
+  --sh-md:0 6px 28px rgba(26,58,107,.13);
+  --r:13px;--r-sm:8px;--r-xs:5px;
+  --font:"IBM Plex Sans Thai","IBM Plex Sans",sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);font-size:14px;color:var(--txt);background:var(--cream);min-height:100vh}
+input,select,textarea,button{font-family:var(--font)}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* TOP BAR */
+.topbar{
+  position:sticky;top:0;z-index:100;height:58px;
+  background:linear-gradient(90deg,var(--navy-dark) 0%,var(--navy) 55%,var(--navy-mid) 100%);
+  box-shadow:0 2px 12px rgba(15,35,71,.35);
+  display:flex;align-items:center;
+}
+.topbar::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--gold-warm),var(--gold));
+}
+.tb-brand{display:flex;align-items:center;gap:11px;padding:0 22px;flex:1}
+.tb-badge{
+  height:34px;padding:0 10px;border-radius:7px;
+  background:linear-gradient(135deg,var(--gold-warm),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--navy-dark);letter-spacing:.04em;
+  box-shadow:0 2px 8px rgba(200,150,12,.35);flex-shrink:0;
+}
+.tb-name{font-size:14.5px;font-weight:600;color:#fff;letter-spacing:.01em}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.48);margin-top:1px}
+.tb-right{padding:0 18px}
+.u-chip{
+  display:flex;align-items:center;gap:7px;padding:6px 13px;border-radius:20px;
+  cursor:pointer;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.72);font-size:12.5px;transition:all .18s;
+}
+.u-chip:hover{background:rgba(255,255,255,.16)}
+.u-chip.in{color:var(--gold-warm);border-color:rgba(230,176,42,.3)}
+.u-av{
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-warm),var(--gold));
+  color:var(--navy-dark);display:flex;align-items:center;justify-content:center;
+  font-size:9.5px;font-weight:800;
+}
+
+/* TAB NAV */
+.tabnav{
+  background:var(--navy);
+  border-bottom:2px solid var(--gold-warm);
+  display:flex;padding:0 20px;gap:0;overflow-x:auto;
+}
+.tabnav::-webkit-scrollbar{display:none}
+.tn{
+  display:flex;align-items:center;gap:6px;
+  padding:13px 18px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.45);cursor:pointer;white-space:nowrap;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .18s;user-select:none;
+}
+.tn:hover{color:rgba(255,255,255,.8)}
+.tn.on{color:var(--gold-warm);border-bottom-color:var(--gold-warm)}
+.tn svg{flex-shrink:0;opacity:.7;transition:opacity .18s}
+.tn.on svg{opacity:1}
+
+/* VIEW */
+.view{display:none;padding:22px 20px;max-width:900px;margin:0 auto;animation:fu .2s ease}
+.view.on{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* PAGE HEAD */
+.ph{margin-bottom:18px}
+.ph-t{font-size:19px;font-weight:600;color:var(--navy)}
+.ph-s{font-size:12.5px;color:var(--txt-soft);margin-top:3px}
+
+/* STAT CARDS */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.sc{
+  background:var(--white);border-radius:var(--r);
+  border:1px solid var(--border);padding:15px 16px;
+  box-shadow:var(--sh-xs);position:relative;overflow:hidden;
+}
+.sc::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.sc.a::before{background:linear-gradient(90deg,var(--navy),var(--navy-mid))}
+.sc.b::before{background:linear-gradient(90deg,var(--gold),var(--gold-warm))}
+.sc.c::before{background:linear-gradient(90deg,#3060b8,#6080d0)}
+.sc.d::before{background:linear-gradient(90deg,var(--green),#4aaa70)}
+.sc-ic{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:10px;
+}
+.sc.a .sc-ic{background:var(--navy-pale)} .sc.b .sc-ic{background:var(--gold-pale)}
+.sc.c .sc-ic{background:#edf2fd}          .sc.d .sc-ic{background:var(--green-p)}
+.sc-n{font-size:27px;font-weight:700;line-height:1;margin-bottom:3px}
+.sc.a .sc-n{color:var(--navy)} .sc.b .sc-n{color:var(--gold-deep)}
+.sc.c .sc-n{color:#3060b8}     .sc.d .sc-n{color:var(--green)}
+.sc-l{font-size:11.5px;color:var(--txt-soft)}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh-xs);overflow:hidden;margin-bottom:14px}
+.ch{
+  display:flex;align-items:center;gap:8px;padding:13px 17px;
+  border-bottom:1px solid var(--border-s);
+  background:linear-gradient(90deg,var(--navy-pale),var(--white));
+}
+.ch svg{opacity:.5}
+.ct{font-size:13.5px;font-weight:600;color:var(--navy)}
+.cb{padding:15px 17px}
+
+/* FILTER */
+.fbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:11px}
+.fbar select,.fbar input{
+  padding:7px 11px;font-size:12.5px;border-radius:var(--r-sm);
+  border:1px solid var(--border);background:var(--white);color:var(--txt);
+  outline:none;transition:border-color .15s;
+}
+.fbar select:focus,.fbar input:focus{border-color:var(--navy-mid)}
+.fbar input{flex:1;min-width:150px}
+
+/* ACH */
+.aw{display:flex;flex-direction:column;gap:8px}
+.ai{
+  background:var(--white);border-radius:var(--r-sm);
+  border:1px solid var(--border);
+  display:grid;grid-template-columns:3px 1fr auto;
+  box-shadow:var(--sh-xs);transition:box-shadow .15s,transform .12s;cursor:pointer;
+}
+.ai:hover{box-shadow:var(--sh-sm);transform:translateY(-1px)}
+.ab{border-radius:3px;margin:10px 0 10px 10px}
+.ab.st{background:linear-gradient(180deg,var(--navy),var(--navy-mid))}
+.ab.te{background:linear-gradient(180deg,var(--gold),var(--gold-warm))}
+.abody{padding:11px 13px}
+.an{font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.aw2{font-size:12.5px;color:var(--txt-soft);margin-bottom:6px}
+.at{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.tg{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500}
+.ts{background:var(--navy-pale);color:var(--navy-mid)}
+.to{background:var(--gold-pale);color:var(--gold-deep)}
+.td{color:var(--txt-ghost);font-size:11px}
+.tc{background:var(--green-p);color:var(--green);text-decoration:none;transition:all .15s}
+.tc:hover{background:var(--green);color:#fff}
+.ar{padding:11px 13px;display:flex;flex-direction:column;gap:4px;align-items:flex-end;min-width:94px}
+.bg{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500;white-space:nowrap;text-align:center}
+.li{background:#f5e8f8;color:#7b2880} .ln{background:#ece8fa;color:#5030a8}
+.lr{background:var(--navy-pale);color:var(--navy-mid)} .lp{background:var(--gold-pale);color:var(--gold-deep)}
+.la{background:var(--border-s);color:var(--txt-soft)}
+.rg{background:#fef9e0;color:#927000} .rs{background:#f4f5f6;color:#555}
+.rb{background:var(--rose-p);color:var(--rose)} .rc{background:var(--green-p);color:var(--green)}
+.ro{background:var(--border-s);color:var(--txt-soft)}
+
+/* SUBJ */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sj{background:var(--white);border-radius:var(--r-sm);border:1px solid var(--border);padding:11px 13px;box-shadow:var(--sh-xs)}
+.sjr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.sjn{font-size:12px;font-weight:500;color:var(--navy);line-height:1.3}
+.sjc{font-size:20px;font-weight:700;color:var(--navy-mid)}
+.sjt{height:4px;background:var(--border-s);border-radius:2px;margin-bottom:6px}
+.sjf{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--navy),var(--gold-warm))}
+.sjch{display:flex;gap:3px;flex-wrap:wrap}
+.sjp{font-size:10px;padding:1px 6px;border-radius:10px}
+
+/* FORM */
+.sl{
+  font-size:11px;font-weight:600;color:var(--navy-mid);
+  letter-spacing:.07em;text-transform:uppercase;
+  padding-bottom:9px;margin-bottom:13px;
+  border-bottom:1px solid var(--border-s);
+  display:flex;align-items:center;gap:6px;
+}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.ff{grid-column:1/-1}
+.fi{display:flex;flex-direction:column;gap:4px}
+.fi label{font-size:12px;font-weight:500;color:var(--txt-soft)}
+.rq{color:var(--rose)}
+.fi input,.fi select,.fi textarea{
+  padding:9px 12px;border-radius:var(--r-sm);
+  border:1px solid var(--border);font-size:13.5px;
+  color:var(--txt);outline:none;background:var(--white);
+  transition:border-color .15s,box-shadow .15s;
+}
+.fi input:focus,.fi select:focus,.fi textarea:focus{
+  border-color:var(--navy-mid);box-shadow:0 0 0 3px rgba(36,81,160,.08);
+}
+.fi textarea{min-height:74px;resize:vertical;line-height:1.5}
+.ttog{display:flex;gap:8px;margin-bottom:4px}
+.tt{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px;border-radius:var(--r-sm);font-size:13px;font-weight:500;
+  cursor:pointer;border:1.5px solid var(--border);
+  background:var(--cream);color:var(--txt-soft);transition:all .18s;
+}
+.tt.ast{background:var(--navy-pale);color:var(--navy);border-color:var(--navy-mid)}
+.tt.ate{background:var(--gold-pale);color:var(--gold-deep);border-color:var(--gold-warm)}
+
+/* FILE */
+.fdrop{
+  border:1.5px dashed var(--border);border-radius:var(--r-sm);
+  padding:20px;text-align:center;cursor:pointer;
+  background:var(--cream);transition:all .18s;
+}
+.fdrop:hover,.fdrop.drag{border-color:var(--navy-mid);background:var(--navy-pale)}
+.fdi{margin-bottom:6px}
+.fdt{font-size:13px;color:var(--txt-soft)}
+.fdh{font-size:11.5px;color:var(--txt-ghost);margin-top:3px}
+.fpv{display:none;background:var(--gold-pale);border-radius:var(--r-sm);padding:9px 13px;align-items:center;gap:9px;margin-top:7px}
+.fpv.on{display:flex}
+.fpvn{flex:1;font-size:12.5px;color:var(--gold-deep);font-weight:500}
+.fprm{cursor:pointer;color:var(--rose);font-size:15px;line-height:1}
+.prog{display:none;height:3px;background:var(--border-s);border-radius:2px;margin-top:7px;overflow:hidden}
+.prog.on{display:block}
+.pgb{height:3px;background:linear-gradient(90deg,var(--navy),var(--gold-warm));border-radius:2px;transition:width .3s}
+
+/* BTN */
+.sr{display:flex;justify-content:flex-end;gap:8px;padding-top:15px;border-top:1px solid var(--border-s)}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 18px;border-radius:var(--r-sm);font-size:13.5px;font-weight:500;
+  cursor:pointer;border:none;transition:all .18s;
+}
+.bp{background:var(--navy);color:#fff}
+.bp:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:var(--sh-sm)}
+.bp:disabled{background:var(--border);color:var(--txt-ghost);cursor:not-allowed;transform:none;box-shadow:none}
+.bg2{background:var(--gold-warm);color:var(--navy-dark);font-weight:600}
+.bg2:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 3px 10px rgba(200,150,12,.3)}
+.bgh{background:transparent;color:var(--txt-soft);border:1px solid var(--border)}
+.bgh:hover{background:var(--border-s)}
+.bsm{padding:6px 12px;font-size:12px}
+
+/* INFO PILL */
+.ip{
+  background:var(--navy-pale);border-radius:var(--r-sm);border-left:3px solid var(--navy-mid);
+  padding:10px 13px;font-size:12.5px;color:var(--navy-mid);
+  display:flex;gap:7px;align-items:flex-start;margin-bottom:14px;line-height:1.5;
+}
+
+/* MODAL */
+.ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(15,35,71,.45);align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+.ov.on{display:flex}
+.mo{background:var(--white);border-radius:var(--r);box-shadow:var(--sh-md);width:100%;max-width:500px;max-height:88vh;overflow-y:auto;border-top:3px solid var(--gold-warm)}
+.mh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border-s);background:var(--navy-pale)}
+.mt{font-size:14.5px;font-weight:600;color:var(--navy)}
+.mx{background:none;border:none;cursor:pointer;color:var(--txt-soft);font-size:18px;line-height:1}
+.mb{padding:18px}
+.dr{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--border-s);font-size:13px}
+.dl{font-weight:600;color:var(--navy-mid);min-width:120px;flex-shrink:0;font-size:12px}
+.dv{color:var(--txt)}
+
+/* TOAST */
+#toast{
+  position:fixed;bottom:20px;right:20px;z-index:999;
+  background:var(--navy-dark);color:#fff;padding:11px 16px;border-radius:var(--r-sm);
+  font-size:13px;box-shadow:var(--sh-md);display:flex;align-items:center;gap:7px;
+  transform:translateY(14px);opacity:0;pointer-events:none;
+  transition:all .28s cubic-bezier(.34,1.56,.64,1);
+  border-left:3px solid var(--gold-warm);
+}
+#toast.on{transform:translateY(0);opacity:1}
+#toast.ok{background:var(--green);border-left-color:var(--gold-warm)}
+#toast.err{background:var(--rose)}
+
+/* SYNC */
+.syn{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:10px}
+.syn.off{background:var(--gold-mist);color:var(--gold)}
+.syn.on{background:var(--green-p);color:var(--green)}
+.syd{width:5px;height:5px;border-radius:50%;background:currentColor}
+
+/* EXPORT */
+.eo{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);margin-bottom:9px}
+.eic{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.en{font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.ed{font-size:12px;color:var(--txt-soft)}
+
+/* EMPTY */
+.emp{text-align:center;padding:36px 16px;color:var(--txt-ghost)}
+.eit{font-size:13.5px;color:var(--txt-soft);font-weight:500;margin-top:10px}
+.eis{font-size:12.5px;margin-top:5px}
+
+/* GATE */
+.gate{display:flex;flex-direction:column;align-items:center;padding:56px 20px;text-align:center}
+.gic{width:54px;height:54px;border-radius:13px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--sh-sm)}
+.gt{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.gs{font-size:13px;color:var(--txt-soft);margin-bottom:22px}
+
+/* SPIN */
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+@media(max-width:580px){
+  .stat-row{grid-template-columns:1fr 1fr}
+  .fg{grid-template-columns:1fr}.ff{grid-column:1}
+  .sg{grid-template-columns:1fr}.ar{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="tb-brand">
+    <div class="tb-badge">KJST</div>
+    <div>
+      <div class="tb-name">ระบบบันทึกผลงาน</div>
+      <div class="tb-sub">กาญจนาภิเษกวิทยาลัย สุราษฎร์ธานี</div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <div class="u-chip" id="uchip" onclick="handleUser()">
+      <div class="u-av" id="uav">?</div>
+      <span id="ulbl">เข้าสู่ระบบ</span>
+    </div>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tabnav">
+  <div class="tn on" id="tn-dash" onclick="go('dash')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+    ภาพรวม
+  </div>
+  <div class="tn" id="tn-form" onclick="go('form')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    บันทึกผลงาน
+  </div>
+  <div class="tn" id="tn-report" onclick="go('report')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    รายงาน &amp; ส่งออก
+  </div>
+</nav>
+
+<!-- ══ DASHBOARD ══ -->
+<div class="view on" id="v-dash">
+  <div class="ph">
+    <div class="ph-t">ภาพรวมผลงาน ปีการศึกษา 2568</div>
+    <div class="ph-s">โรงเรียนกาญจนาภิเษกวิทยาลัย สุราษฎร์ธานี · อำเภอไชยา จังหวัดสุราษฎร์ธานี</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="sc a">
+      <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+      <div class="sc-n" id="s0">0</div><div class="sc-l">ผลงานทั้งหมด</div>
+    </div>
+    <div class="sc b">
+      <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="sc-n" id="s1">0</div><div class="sc-l">ผลงานนักเรียน</div>
+    </div>
+    <div class="sc c">
+      <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3060b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="sc-n" id="s2">0</div><div class="sc-l">ผลงานครู/บุคลากร</div>
+    </div>
+    <div class="sc d">
+      <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="sc-n" id="s3">0</div><div class="sc-l">เหรียญทอง/ชนะเลิศ</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span class="ct">ค้นหาผลงาน</span>
+      <span id="synbg" class="syn off" style="margin-left:auto"><span class="syd"></span><span id="syntx">ยังไม่ได้เชื่อม Sheets</span></span>
+    </div>
+    <div class="cb" style="padding-bottom:10px">
+      <div class="fbar">
+        <select id="ft" onchange="renderList()"><option value="">ทุกประเภท</option><option value="student">นักเรียน</option><option value="teacher">ครู/บุคลากร</option></select>
+        <select id="fs" onchange="renderList()"><option value="">ทุกกลุ่มสาระ</option></select>
+        <select id="fl" onchange="renderList()"><option value="">ทุกระดับ</option><option value="นานาชาติ">นานาชาติ</option><option value="ประเทศ">ประเทศ</option><option value="ภูมิภาค">ภูมิภาค</option><option value="จังหวัด">จังหวัด</option><option value="เขตพื้นที่">เขตพื้นที่</option></select>
+        <input type="text" id="fq" placeholder="ค้นหาชื่อ รางวัล หน่วยงาน…" oninput="renderList()">
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span id="rc" style="font-size:12px;color:var(--txt-soft)">0 รายการ</span>
+        <button class="btn bgh bsm" onclick="loadSheets()">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+          โหลดจาก Sheets
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="aw" id="al">
+    <div class="emp">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--txt-ghost)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <div class="eit">ยังไม่มีข้อมูลผลงาน</div>
+      <div class="eis">กดแท็บ "บันทึกผลงาน" เพื่อเริ่มต้น</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <span class="ct">แยกตามกลุ่มสาระการเรียนรู้</span>
+    </div>
+    <div class="cb"><div class="sg" id="sj"></div></div>
+  </div>
+</div>
+
+<!-- ══ FORM ══ -->
+<div class="view" id="v-form">
+  <div id="gate" style="display:none">
+    <div class="card">
+      <div class="gate">
+        <div class="gic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="gt">กรุณาเข้าสู่ระบบก่อนบันทึกข้อมูล</div>
+        <div class="gs">ต้องใช้อีเมลโรงเรียน @kjst.ac.th</div>
+        <button class="btn bp" onclick="handleUser()">เข้าสู่ระบบ</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="fct">
+    <div class="ph-t" style="margin-bottom:16px;font-size:19px;font-weight:600;color:var(--navy)">บันทึกผลงานใหม่</div>
+    <div class="ip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>กรอกด้วยอีเมลโรงเรียน <strong>@kjst.ac.th</strong> เท่านั้น ชื่อผู้บันทึกจะถูกระบุเป็นผู้รับรองข้อมูล</span>
+    </div>
+    <div class="card">
+      <div class="cb">
+
+        <div class="sl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>ประเภทผลงาน</div>
+        <div class="ttog" style="margin-bottom:20px">
+          <button class="tt ast" id="tts" onclick="setType('student')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            ผลงานนักเรียน
+          </button>
+          <button class="tt" id="ttt" onclick="setType('teacher')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            ผลงานครู/บุคลากร
+          </button>
+        </div>
+
+        <div class="sl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>ผู้บันทึกข้อมูล</div>
+        <div class="fg">
+          <div class="fi"><label>อีเมลโรงเรียน<span class="rq">*</span></label><input type="email" id="fe" placeholder="yourname@kjst.ac.th"></div>
+          <div class="fi"><label>ชื่อผู้ลงข้อมูล (ผู้รับรอง)<span class="rq">*</span></label><input type="text" id="fr" placeholder="ครูผู้รับผิดชอบ / ที่ปรึกษา"></div>
+        </div>
+
+        <div class="sl" style="margin-top:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>ข้อมูลผลงาน / รางวัล</div>
+        <div class="fg">
+          <div class="fi ff"><label>รายการ / ชื่อรางวัล<span class="rq">*</span></label><input type="text" id="faw" placeholder="เช่น รางวัลชนะเลิศ การแข่งขันคณิตศาสตร์โอลิมปิก"></div>
+          <div class="fi">
+            <label>ผลการแข่งขัน / ระดับรางวัล<span class="rq">*</span></label>
+            <select id="frs">
+              <option value="">— เลือก —</option>
+              <option value="ชนะเลิศ / เหรียญทอง">ชนะเลิศ / เหรียญทอง</option>
+              <option value="รองชนะเลิศอันดับ 1 / เหรียญเงิน">รองชนะเลิศอันดับ 1 / เหรียญเงิน</option>
+              <option value="รองชนะเลิศอันดับ 2 / เหรียญทองแดง">รองชนะเลิศอันดับ 2 / เหรียญทองแดง</option>
+              <option value="รางวัลชมเชย">รางวัลชมเชย</option>
+              <option value="เกียรติบัตร / ผ่านการคัดเลือก">เกียรติบัตร / ผ่านการคัดเลือก</option>
+              <option value="Best Practice">Best Practice</option>
+              <option value="ผ่านการอบรม / พัฒนาตนเอง">ผ่านการอบรม / พัฒนาตนเอง</option>
+              <option value="วิทยากร / ผู้ทรงคุณวุฒิ">วิทยากร / ผู้ทรงคุณวุฒิ</option>
+              <option value="อื่นๆ">อื่นๆ</option>
+            </select>
+          </div>
+          <div class="fi">
+            <label>ระดับการแข่งขัน<span class="rq">*</span></label>
+            <select id="flv">
+              <option value="">— เลือก —</option>
+              <option value="เขตพื้นที่">เขตพื้นที่</option>
+              <option value="จังหวัด">จังหวัด</option>
+              <option value="ภูมิภาค">ภูมิภาค</option>
+              <option value="ประเทศ">ประเทศ</option>
+              <option value="นานาชาติ">นานาชาติ</option>
+            </select>
+          </div>
+          <div class="fi">
+            <label>กลุ่มสาระ / กิจกรรม<span class="rq">*</span></label>
+            <select id="fsb">
+              <option value="">— เลือก —</option>
+              <option>ภาษาไทย</option><option>คณิตศาสตร์</option>
+              <option>วิทยาศาสตร์และเทคโนโลยี</option>
+              <option>สังคมศึกษา ศาสนา และวัฒนธรรม</option>
+              <option>ศิลปะ</option><option>สุขศึกษาและพลศึกษา</option>
+              <option>ภาษาต่างประเทศ</option><option>การงานอาชีพ</option>
+              <option>กิจกรรมพัฒนาผู้เรียน</option>
+            </select>
+          </div>
+          <div class="fi"><label>หน่วยงานที่จัด / มอบรางวัล<span class="rq">*</span></label><input type="text" id="fog" placeholder="เช่น สพฐ., สมาคมคณิตศาสตร์ฯ"></div>
+          <div class="fi"><label>วันที่ได้รับรางวัล</label><input type="date" id="fdt"></div>
+        </div>
+
+        <div id="ssec">
+          <div class="sl" style="margin-top:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>ข้อมูลนักเรียน</div>
+          <div class="fg">
+            <div class="fi ff"><label>ชื่อ-สกุลนักเรียน<span class="rq">*</span></label><textarea id="fnm" placeholder="กรอกชื่อ-สกุล ทีละบรรทัด (กรณีหลายคน)&#10;เช่น&#10;นายกิตติชัย มีสุข&#10;นางสาวพิมพ์นภา ดีงาม"></textarea></div>
+            <div class="fi"><label>ชั้น / ห้อง</label><input type="text" id="fcl" placeholder="เช่น ม.3/2, ม.6/4"></div>
+            <div class="fi"><label>ครูที่ปรึกษา / โค้ช</label><input type="text" id="fco" placeholder="ชื่อ-สกุลครูที่ดูแล"></div>
+          </div>
+        </div>
+
+        <div id="tsec" style="display:none">
+          <div class="sl" style="margin-top:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>ข้อมูลครู / บุคลากร</div>
+          <div class="fg">
+            <div class="fi ff"><label>ชื่อ-สกุลครู / บุคลากร<span class="rq">*</span></label><input type="text" id="ftn" placeholder="ชื่อ-สกุลครู/บุคลากร"></div>
+            <div class="fi">
+              <label>วิทยฐานะ</label>
+              <select id="frk">
+                <option value="">— เลือก —</option>
+                <option>ครูผู้ช่วย</option><option>ครู (ไม่มีวิทยฐานะ)</option>
+                <option>ครูชำนาญการ</option><option>ครูชำนาญการพิเศษ</option>
+                <option>ครูเชี่ยวชาญ</option><option>บุคลากรสนับสนุน</option>
+              </select>
+            </div>
+            <div class="fi">
+              <label>ประเภทการพัฒนา</label>
+              <select id="fdv">
+                <option value="">— เลือก —</option>
+                <option>รางวัล / ผลงานทางวิชาการ</option><option>อบรม / สัมมนา</option>
+                <option>ศึกษาดูงาน</option><option>นำเสนอ / เผยแพร่ผลงาน</option>
+                <option>เป็นกรรมการ / ผู้ตรวจ</option><option>วิทยากร</option>
+                <option>นวัตกรรม / สิ่งประดิษฐ์</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="sl" style="margin-top:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>แนบเกียรติบัตร / หลักฐาน</div>
+        <div class="fdrop" id="fdrop" onclick="document.getElementById('finp').click()" ondragover="dov(event)" ondragleave="dol(event)" ondrop="ddr(event)">
+          <div class="fdi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--txt-ghost)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
+          <div class="fdt">คลิกหรือลากไฟล์มาวาง</div>
+          <div class="fdh">PDF, JPG, PNG, DOCX · ไม่เกิน 10 MB · อัปโหลดไปยัง Google Drive</div>
+          <input type="file" id="finp" style="display:none" accept=".pdf,.jpg,.jpeg,.png,.docx" onchange="fsel(event)">
+        </div>
+        <div class="fpv" id="fpv">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+          <span class="fpvn" id="fpvn">—</span>
+          <span style="font-size:11px;color:var(--txt-ghost)" id="fpvs">—</span>
+          <span class="fprm" onclick="frm()">✕</span>
+        </div>
+        <div class="prog" id="prog"><div class="pgb" id="pgb" style="width:0%"></div></div>
+        <div id="dnote" style="font-size:11.5px;color:var(--txt-ghost);margin-top:5px">ตั้งค่า Apps Script URL ก่อนเพื่อใช้งานฟีเจอร์แนบไฟล์</div>
+
+        <div class="sl" style="margin-top:16px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>หมายเหตุ</div>
+        <div class="fi" style="margin-bottom:0"><textarea id="fnt" placeholder="รายละเอียดเพิ่มเติม ลิงก์เอกสาร ฯลฯ" style="min-height:62px"></textarea></div>
+
+        <div class="sr">
+          <button class="btn bgh" onclick="clrF()">ล้างข้อมูล</button>
+          <button class="btn bp" id="sbtn" onclick="doSub()">
+            <span id="slbl">บันทึกผลงาน</span>
+            <div class="spin" id="sspin" style="display:none"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REPORT ══ -->
+<div class="view" id="v-report">
+  <div class="ph-t" style="margin-bottom:16px;font-size:19px;font-weight:600;color:var(--navy)">รายงาน &amp; ส่งออก</div>
+
+  <div class="card">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+      <span class="ct">ส่งออกข้อมูล</span>
+    </div>
+    <div class="cb">
+      <div class="eo">
+        <div class="eic" style="background:var(--green-p)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
+        <div style="flex:1"><div class="en">ดาวน์โหลด CSV</div><div class="ed">ส่งออกข้อมูลทั้งหมด รองรับภาษาไทย นำเข้า Google Sheets ได้ทันที</div></div>
+        <button class="btn bg2" onclick="doCSV()">ดาวน์โหลด</button>
+      </div>
+      <div class="eo">
+        <div class="eic" style="background:var(--navy-pale)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy-mid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div style="flex:1"><div class="en">ตารางสรุปสำหรับ SAR</div><div class="ed">สรุปแยกตามกลุ่มสาระ × ระดับรางวัล สำหรับรายงาน SAR ปี 2568</div></div>
+        <button class="btn bgh" onclick="doSum()">แสดง</button>
+      </div>
+    </div>
+  </div>
+
+  <details style="margin-bottom:12px">
+    <summary style="cursor:pointer;padding:11px 15px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);font-size:13px;font-weight:500;color:var(--navy-mid);list-style:none;display:flex;align-items:center;gap:7px;box-shadow:var(--sh-xs)">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+      การเชื่อมต่อ Google Apps Script
+    </summary>
+    <div style="padding:14px 15px;background:var(--cream);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r-sm) var(--r-sm)">
+      <div class="fi" style="margin-bottom:10px">
+        <label style="font-size:12px;color:var(--txt-soft)">Web App URL</label>
+        <input type="url" id="cfgu" placeholder="https://script.google.com/macros/s/…/exec" style="font-size:12.5px">
+        <span style="font-size:11px;color:var(--txt-ghost);margin-top:3px;display:block">ได้จาก Apps Script → Deploy → New deployment → Web app</span>
+      </div>
+      <div style="display:flex;gap:7px">
+        <button class="btn bp bsm" onclick="saveURL()">บันทึก URL</button>
+        <button class="btn bgh bsm" onclick="testConn()">ทดสอบ</button>
+      </div>
+      <div id="cst" style="font-size:12px;color:var(--txt-soft);margin-top:8px"></div>
+    </div>
+  </details>
+
+  <div id="sumout"></div>
+</div>
+
+<!-- MODAL -->
+<div class="ov" id="modal" onclick="if(event.target===this)closeMd()">
+  <div class="mo">
+    <div class="mh">
+      <div class="mt" id="mdtl">รายละเอียด</div>
+      <button class="mx" onclick="closeMd()">✕</button>
+    </div>
+    <div class="mb" id="mdb"></div>
+  </div>
+</div>
+
+<div id="toast"><span id="tmsg">—</span></div>
+
+<script>
+const DOMAIN='kjst.ac.th',DK='kjst_data_v1',UK='kjst_user',CK='kjst_url';
+const SUBJS=['ภาษาไทย','คณิตศาสตร์','วิทยาศาสตร์และเทคโนโลยี','สังคมศึกษา ศาสนา และวัฒนธรรม','ศิลปะ','สุขศึกษาและพลศึกษา','ภาษาต่างประเทศ','การงานอาชีพ','กิจกรรมพัฒนาผู้เรียน'];
+const LB={'นานาชาติ':'li','ประเทศ':'ln','ภูมิภาค':'lr','จังหวัด':'lp','เขตพื้นที่':'la'};
+const RB=r=>{if(!r)return'ro';if(r.includes('ทอง'))return'rg';if(r.includes('เงิน'))return'rs';if(r.includes('ทองแดง'))return'rb';if(r.includes('เกียรติบัตร')||r.includes('Best')||r.includes('Practice'))return'rc';return'ro';};
+
+let recs=[],user='',ctype='student',selFile=null,surl='';
+
+function init(){
+  try{recs=JSON.parse(localStorage.getItem(DK)||'[]');}catch(e){recs=[];}
+  user=localStorage.getItem(UK)||'';
+  surl=localStorage.getItem(CK)||'';
+  if(user)upUI();
+  if(surl){document.getElementById('cfgu').value=surl;setSyn(true);}
+  fillSF();updStats();renderList();renderSJ();
+}
+function save(){try{localStorage.setItem(DK,JSON.stringify(recs));}catch(e){}}
+
+function go(t){
+  ['dash','form','report'].forEach(x=>{
+    document.getElementById('v-'+x).classList.toggle('on',x===t);
+    document.getElementById('tn-'+x).classList.toggle('on',x===t);
+  });
+  if(t==='form')chkGate();
+  if(t==='dash'){updStats();renderList();renderSJ();}
+}
+
+function handleUser(){
+  if(user){if(confirm('ออกจากระบบ?\n'+user)){user='';localStorage.removeItem(UK);upUI();chkGate();}return;}
+  const e=prompt('กรอกอีเมลโรงเรียน:\nเช่น yourname@kjst.ac.th');
+  if(!e)return;
+  if(!e.toLowerCase().endsWith('@'+DOMAIN)){toast('กรุณาใช้อีเมล @'+DOMAIN,'err');return;}
+  user=e;localStorage.setItem(UK,e);
+  document.getElementById('fe').value=e;
+  upUI();chkGate();toast('เข้าสู่ระบบแล้ว · '+e.split('@')[0]);
+}
+function upUI(){
+  const n=user?user.split('@')[0]:'';
+  document.getElementById('ulbl').textContent=user?n:'เข้าสู่ระบบ';
+  document.getElementById('uav').textContent=user?n.substring(0,2).toUpperCase():'?';
+  document.getElementById('uchip').className='u-chip'+(user?' in':'');
+}
+function chkGate(){
+  const g=document.getElementById('gate'),c=document.getElementById('fct');
+  if(user){g.style.display='none';c.style.display='block';document.getElementById('fe').value=user;}
+  else{g.style.display='block';c.style.display='none';}
+}
+function toast(msg,type=''){
+  const el=document.getElementById('toast');
+  document.getElementById('tmsg').textContent=msg;
+  el.className='on'+(type?' '+type:'');
+  clearTimeout(el._t);el._t=setTimeout(()=>el.className='',3500);
+}
+function setSyn(c){
+  document.getElementById('synbg').className='syn '+(c?'on':'off');
+  document.getElementById('syntx').textContent=c?'เชื่อม Sheets แล้ว':'ยังไม่ได้เชื่อม Sheets';
+}
+function setType(t){
+  ctype=t;
+  document.getElementById('tts').className='tt'+(t==='student'?' ast':'');
+  document.getElementById('ttt').className='tt'+(t==='teacher'?' ate':'');
+  document.getElementById('ssec').style.display=t==='student'?'':'none';
+  document.getElementById('tsec').style.display=t==='teacher'?'':'none';
+}
+function dov(e){e.preventDefault();document.getElementById('fdrop').classList.add('drag');}
+function dol(){document.getElementById('fdrop').classList.remove('drag');}
+function ddr(e){e.preventDefault();dol();const f=e.dataTransfer.files[0];if(f)pf(f);}
+function fsel(e){const f=e.target.files[0];if(f)pf(f);}
+function pf(f){
+  if(f.size>10*1024*1024){toast('ไฟล์ใหญ่เกิน 10 MB','err');return;}
+  selFile=f;document.getElementById('fpvn').textContent=f.name;
+  document.getElementById('fpvs').textContent=(f.size/1024).toFixed(0)+' KB';
+  document.getElementById('fpv').classList.add('on');
+  document.getElementById('dnote').style.display=surl?'none':'';
+}
+function frm(){selFile=null;document.getElementById('fpv').classList.remove('on');document.getElementById('finp').value='';}
+async function f64(f){return new Promise((r,j)=>{const rd=new FileReader();rd.onload=e=>r(e.target.result);rd.onerror=j;rd.readAsDataURL(f);});}
+
+async function doSub(){
+  const em=document.getElementById('fe').value.trim();
+  const rc=document.getElementById('fr').value.trim();
+  const aw=document.getElementById('faw').value.trim();
+  const rs=document.getElementById('frs').value;
+  const lv=document.getElementById('flv').value;
+  const sb=document.getElementById('fsb').value;
+  const og=document.getElementById('fog').value.trim();
+  if(!em||!rc||!aw||!rs||!lv||!sb||!og){toast('กรุณากรอกข้อมูลที่มี * ให้ครบ','err');return;}
+  if(!em.toLowerCase().endsWith('@'+DOMAIN)){toast('กรุณาใช้อีเมล @'+DOMAIN,'err');return;}
+  if(ctype==='student'&&!document.getElementById('fnm').value.trim()){toast('กรุณากรอกชื่อนักเรียน','err');return;}
+  if(ctype==='teacher'&&!document.getElementById('ftn').value.trim()){toast('กรุณากรอกชื่อครู/บุคลากร','err');return;}
+
+  const btn=document.getElementById('sbtn'),lbl=document.getElementById('slbl'),sp=document.getElementById('sspin');
+  btn.disabled=true;lbl.textContent='กำลังบันทึก…';sp.style.display='';
+
+  const data={type:ctype,email:em,recorder:rc,award:aw,result:rs,level:lv,subject:sb,org:og,
+    date:document.getElementById('fdt').value,note:document.getElementById('fnt').value.trim(),
+    names:document.getElementById('fnm').value.trim(),classRoom:document.getElementById('fcl').value.trim(),
+    coach:document.getElementById('fco').value.trim(),tname:document.getElementById('ftn').value.trim(),
+    rank:document.getElementById('frk').value,devtype:document.getElementById('fdv').value};
+
+  if(selFile){
+    try{
+      lbl.textContent='แปลงไฟล์…';
+      document.getElementById('prog').classList.add('on');
+      data.certificateFile=await f64(selFile);data.certificateFileName=selFile.name;
+      document.getElementById('pgb').style.width='55%';
+    }catch(e){toast('แปลงไฟล์ไม่ได้','err');}
+  }
+  const lr={...data,id:Date.now(),ts:new Date().toLocaleDateString('th-TH'),certificateFile:undefined,fileUrl:''};
+  recs.unshift(lr);save();
+
+  if(surl){
+    try{
+      lbl.textContent='ส่งเข้า Sheets…';document.getElementById('pgb').style.width='80%';
+      const rsp=await fetch(surl,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain'}});
+      const js=await rsp.json();
+      document.getElementById('pgb').style.width='100%';
+      if(js.success){if(js.fileUrl)recs[0].fileUrl=js.fileUrl;save();toast('บันทึกและส่ง Sheets เรียบร้อย','ok');}
+      else toast('บันทึกในเครื่องแล้ว · '+( js.error||'Sheets ผิดพลาด'),'err');
+    }catch(err){toast('บันทึกในเครื่องแล้ว · เชื่อม Sheets ไม่ได้','err');}
+  }else{toast('บันทึกเรียบร้อย','ok');}
+
+  btn.disabled=false;lbl.textContent='บันทึกผลงาน';sp.style.display='none';
+  document.getElementById('prog').classList.remove('on');document.getElementById('pgb').style.width='0%';
+  clrF();go('dash');
+}
+function clrF(){
+  ['fe','fr','faw','fog','fdt','fnt','fnm','fcl','fco','ftn'].forEach(x=>{const el=document.getElementById(x);if(el)el.value='';});
+  ['frs','flv','fsb','frk','fdv'].forEach(x=>{const el=document.getElementById(x);if(el)el.selectedIndex=0;});
+  if(user)document.getElementById('fe').value=user;frm();
+}
+
+function updStats(){
+  document.getElementById('s0').textContent=recs.length;
+  document.getElementById('s1').textContent=recs.filter(r=>r.type==='student').length;
+  document.getElementById('s2').textContent=recs.filter(r=>r.type==='teacher').length;
+  document.getElementById('s3').textContent=recs.filter(r=>r.result&&r.result.includes('ทอง')).length;
+}
+function fillSF(){
+  const s=document.getElementById('fs');
+  s.innerHTML='<option value="">ทุกกลุ่มสาระ</option>';
+  SUBJS.forEach(x=>{const o=document.createElement('option');o.value=o.textContent=x;s.appendChild(o);});
+}
+function renderList(){
+  const t=document.getElementById('ft').value,s=document.getElementById('fs').value;
+  const l=document.getElementById('fl').value,q=document.getElementById('fq').value.toLowerCase();
+  const fl=recs.filter(r=>{
+    if(t&&r.type!==t)return false;if(s&&r.subject!==s)return false;
+    if(l&&r.level!==l)return false;
+    if(q){const tx=[r.award,r.names,r.tname,r.subject,r.org,r.recorder].join(' ').toLowerCase();if(!tx.includes(q))return false;}
+    return true;
+  });
+  document.getElementById('rc').textContent=fl.length+' รายการ';
+  const wrap=document.getElementById('al');
+  if(!fl.length){
+    wrap.innerHTML=`<div class="emp"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--txt-ghost)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><div class="eit">${recs.length?'ไม่พบรายการที่ตรงกัน':'ยังไม่มีข้อมูลผลงาน'}</div><div class="eis">${recs.length?'ลองเปลี่ยนตัวกรอง':'กดแท็บ "บันทึกผลงาน" เพื่อเริ่มต้น'}</div></div>`;
+    return;
+  }
+  wrap.innerHTML=fl.map((r,i)=>{
+    const iS=r.type==='student';
+    const who=iS?(r.names||'').split('\n').join(', ')+(r.classRoom?' · '+r.classRoom:''):(r.tname||'')+(r.rank?' · '+r.rank:'');
+    const cert=r.fileUrl?`<a href="${r.fileUrl}" target="_blank" rel="noopener" class="tg tc" onclick="event.stopPropagation()">เกียรติบัตร</a>`:'';
+    return`<div class="ai" onclick="showMd(${recs.indexOf(r)})">
+      <div class="ab ${iS?'st':'te'}"></div>
+      <div class="abody">
+        <div class="an">${r.award||'—'}</div>
+        <div class="aw2">${who||'—'}</div>
+        <div class="at">
+          <span class="tg ts">${r.subject||'—'}</span>
+          ${r.org?`<span class="tg to">${r.org}</span>`:''}
+          <span class="td">${r.date||r.ts||''}</span>
+          ${cert}
+        </div>
+      </div>
+      <div class="ar">
+        <span class="bg ${LB[r.level]||'la'}">${r.level||'—'}</span>
+        <span class="bg ${RB(r.result)}">${r.result||'—'}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+function renderSJ(){
+  const mx=Math.max(1,...SUBJS.map(s=>recs.filter(r=>r.subject===s).length));
+  document.getElementById('sj').innerHTML=SUBJS.map(s=>{
+    const n=recs.filter(r=>r.subject===s).length,p=Math.round(n/mx*100);
+    const g=recs.filter(r=>r.subject===s&&r.result&&r.result.includes('ทอง')).length;
+    const nt=recs.filter(r=>r.subject===s&&(r.level==='ประเทศ'||r.level==='นานาชาติ')).length;
+    return`<div class="sj"><div class="sjr"><div class="sjn">${s}</div><div class="sjc">${n}</div></div>
+      <div class="sjt"><div class="sjf" style="width:${p}%"></div></div>
+      <div class="sjch">
+        ${g?`<span class="sjp" style="background:#fef9e0;color:#927000">ทอง ${g}</span>`:''}
+        ${nt?`<span class="sjp" style="background:#ece8fa;color:#5030a8">ชาติ ${nt}</span>`:''}
+        ${!n?`<span class="sjp" style="background:var(--border-s);color:var(--txt-ghost)">ยังไม่มีข้อมูล</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function certH(u){
+  if(!u)return'—';
+  const em=u.includes('/preview')?u:u.replace('/view','/preview');
+  return`<a href="${u}" target="_blank" style="color:var(--green);font-weight:500">เปิดดูไฟล์</a>
+    <div style="margin-top:9px;border-radius:7px;overflow:hidden;border:1px solid var(--border)">
+      <iframe src="${em}" style="width:100%;height:370px;border:none;display:block" loading="lazy"></iframe>
+    </div>`;
+}
+function showMd(i){
+  const r=recs[i];if(!r)return;
+  const iS=r.type==='student';
+  document.getElementById('mdtl').textContent=r.award||'รายละเอียด';
+  const rows=[
+    ['ประเภท',iS?'นักเรียน':'ครู/บุคลากร'],
+    ['กลุ่มสาระ',r.subject],['รายการ/รางวัล',r.award],
+    ['ผลการแข่งขัน',r.result],['ระดับ',r.level],
+    ['ชื่อ-สกุล',iS?(r.names||'').replace(/\n/g,', '):r.tname],
+    iS?['ชั้น/ห้อง',r.classRoom]:['วิทยฐานะ',r.rank],
+    iS?['ครูที่ปรึกษา',r.coach]:['ประเภทพัฒนา',r.devtype],
+    ['หน่วยงาน',r.org],['วันที่',r.date||r.ts],
+    ['ผู้ลงข้อมูล',r.recorder],['อีเมล',r.email],
+    r.note?['หมายเหตุ',r.note]:null,
+    r.fileUrl?['เกียรติบัตร',certH(r.fileUrl)]:null,
+  ].filter(Boolean);
+  document.getElementById('mdb').innerHTML=rows.map(([k,v])=>`<div class="dr"><div class="dl">${k}</div><div class="dv">${v||'—'}</div></div>`).join('');
+  document.getElementById('modal').classList.add('on');
+}
+function closeMd(){document.getElementById('modal').classList.remove('on');}
+
+async function loadSheets(){
+  if(!surl){toast('ตั้งค่า URL ก่อน · แท็บ รายงาน','err');go('report');return;}
+  toast('กำลังโหลด…');
+  try{
+    const r=await fetch(surl+'?action=getData');const j=await r.json();
+    if(j.records&&j.records.length){
+      recs=j.records.map(r=>({id:Date.now()+Math.random(),
+        type:r['ประเภท']==='นักเรียน'?'student':'teacher',
+        subject:r['กลุ่มสาระ']||'',award:r['รายการ/ชื่อรางวัล']||'',
+        result:r['ผลการแข่งขัน']||'',level:r['ระดับ']||'',
+        names:r['ชื่อ-สกุล']||'',tname:r['ชื่อ-สกุล']||'',
+        classRoom:r['ชั้น/ห้อง']||'',rank:r['วิทยฐานะ']||'',
+        devtype:r['ประเภทการพัฒนา']||'',coach:r['ครูที่ปรึกษา']||'',
+        org:r['หน่วยงานที่จัด']||'',date:r['วันที่รับรางวัล']||'',
+        fileUrl:r['ลิงก์เกียรติบัตร']||'',recorder:r['ผู้ลงข้อมูล']||'',
+        email:r['อีเมลผู้บันทึก']||'',note:r['หมายเหตุ']||'',
+        ts:r['วันที่บันทึก']||''}));
+      save();updStats();renderList();renderSJ();setSyn(true);
+      toast(`โหลดสำเร็จ ${recs.length} รายการ`,'ok');
+    }else toast('ไม่พบข้อมูลใน Sheets');
+  }catch(e){toast('เชื่อม Sheets ไม่ได้: '+e.message,'err');}
+}
+function doCSV(){
+  if(!recs.length){toast('ยังไม่มีข้อมูล','err');return;}
+  const h=['ประเภท','กลุ่มสาระ','รายการ/รางวัล','ผลการแข่งขัน','ระดับ','ชื่อ-สกุล','ชั้น/ห้อง','วิทยฐานะ','ประเภทพัฒนา','ครูที่ปรึกษา','หน่วยงาน','วันที่','อีเมล','ผู้ลงข้อมูล','ลิงก์เกียรติบัตร','หมายเหตุ'];
+  const rows=recs.map(r=>[r.type==='student'?'นักเรียน':'ครู/บุคลากร',r.subject,r.award,r.result,r.level,r.type==='student'?(r.names||'').replace(/\n/g,'|'):(r.tname||''),r.classRoom||'',r.rank||'',r.devtype||'',r.coach||'',r.org,r.date||r.ts,r.email,r.recorder,r.fileUrl||'',r.note||'']);
+  const csv=[h,...rows].map(r=>r.map(c=>'"'+(c+'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  const b=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const u=URL.createObjectURL(b),a=document.createElement('a');
+  a.href=u;a.download='ผลงาน_KJST_'+new Date().toLocaleDateString('th-TH').replace(/\//g,'-')+'.csv';
+  a.click();URL.revokeObjectURL(u);toast('ดาวน์โหลด CSV เรียบร้อย','ok');
+}
+function doSum(){
+  const out=document.getElementById('sumout');
+  if(!recs.length){out.innerHTML='<div class="emp"><div class="eit">ยังไม่มีข้อมูล</div></div>';return;}
+  const lvs=['นานาชาติ','ประเทศ','ภูมิภาค','จังหวัด','เขตพื้นที่'];
+  let html=`<div class="card"><div class="ch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="ct">ตารางสรุปผลงาน ปีการศึกษา 2568</span></div><div class="cb" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:560px">`;
+  html+=`<tr style="background:var(--navy);color:#fff"><th style="padding:8px 10px;text-align:left;font-weight:500">กลุ่มสาระ</th><th style="padding:8px;font-weight:500">รวม</th><th style="padding:8px;font-weight:500">นร.</th><th style="padding:8px;font-weight:500">ครู</th>`;
+  lvs.forEach(l=>html+=`<th style="padding:8px;font-weight:500">${l}</th>`);
+  html+=`<th style="padding:8px">🥇</th><th style="padding:8px">🥈</th><th style="padding:8px">🥉</th></tr>`;
+  let tot=new Array(8).fill(0);
+  SUBJS.forEach((s,si)=>{
+    const sr=recs.filter(r=>r.subject===s);if(!sr.length)return;
+    const c=[sr.length,sr.filter(r=>r.type==='student').length,sr.filter(r=>r.type==='teacher').length,...lvs.map(l=>sr.filter(r=>r.level===l).length),sr.filter(r=>r.result&&r.result.includes('ทอง')).length,sr.filter(r=>r.result&&r.result.includes('เงิน')).length,sr.filter(r=>r.result&&r.result.includes('ทองแดง')).length];
+    c.forEach((v,i)=>{if(i<tot.length)tot[i]+=v;});
+    html+=`<tr style="background:${si%2?'var(--cream)':'#fff'}"><td style="padding:7px 10px;border-bottom:1px solid var(--border-s);font-weight:500;color:var(--navy-mid)">${s}</td>`+c.map(v=>`<td style="padding:7px;text-align:center;border-bottom:1px solid var(--border-s)">${v||'—'}</td>`).join('')+`</tr>`;
+  });
+  html+=`<tr style="background:var(--gold-pale);font-weight:600;color:var(--navy)"><td style="padding:8px 10px">รวมทั้งหมด</td>`+tot.map(v=>`<td style="padding:8px;text-align:center">${v}</td>`).join('')+`</tr></table></div></div>`;
+  out.innerHTML=html;
+}
+function saveURL(){
+  const u=document.getElementById('cfgu').value.trim();
+  if(!u||!u.startsWith('https://script.google.com')){toast('URL ไม่ถูกต้อง','err');return;}
+  surl=u;localStorage.setItem(CK,u);setSyn(true);toast('บันทึก URL เรียบร้อย','ok');
+}
+async function testConn(){
+  if(!surl){toast('กรุณาบันทึก URL ก่อน','err');return;}
+  document.getElementById('cst').textContent='กำลังทดสอบ…';
+  try{
+    const r=await fetch(surl+'?action=getSummary');const j=await r.json();
+    document.getElementById('cst').textContent='✅ เชื่อมต่อสำเร็จ · '+(j.total||0)+' รายการใน Sheets';
+    setSyn(true);toast('เชื่อมต่อสำเร็จ','ok');
+  }catch(e){
+    document.getElementById('cst').textContent='❌ '+e.message;
+    toast('เชื่อมต่อไม่ได้','err');
+  }
+}
+init();
+</script>
+</body>
+</html>
