@@ -110,7 +110,7 @@ input,select,textarea,button{font-family:var(--font)}
 .ph-s{font-size:12.5px;color:var(--txt-soft);margin-top:3px}
 
 /* STAT CARDS */
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}
 .sc{
   background:var(--white);border-radius:var(--r);
   border:1px solid var(--border);padding:15px 16px;
@@ -121,15 +121,18 @@ input,select,textarea,button{font-family:var(--font)}
 .sc.b::before{background:linear-gradient(90deg,var(--gold),var(--gold-warm))}
 .sc.c::before{background:linear-gradient(90deg,#3060b8,#6080d0)}
 .sc.d::before{background:linear-gradient(90deg,var(--green),#4aaa70)}
+.sc.e::before{background:linear-gradient(90deg,#7b2880,#a850b0)}
 .sc-ic{
   width:32px;height:32px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;margin-bottom:10px;
 }
 .sc.a .sc-ic{background:var(--navy-pale)} .sc.b .sc-ic{background:var(--gold-pale)}
 .sc.c .sc-ic{background:#edf2fd}          .sc.d .sc-ic{background:var(--green-p)}
+.sc.e .sc-ic{background:#f5e8f8}
 .sc-n{font-size:27px;font-weight:700;line-height:1;margin-bottom:3px}
 .sc.a .sc-n{color:var(--navy)} .sc.b .sc-n{color:var(--gold-deep)}
 .sc.c .sc-n{color:#3060b8}     .sc.d .sc-n{color:var(--green)}
+.sc.e .sc-n{color:#7b2880}
 .sc-l{font-size:11.5px;color:var(--txt-soft)}
 
 /* CARD */
@@ -165,6 +168,7 @@ input,select,textarea,button{font-family:var(--font)}
 .ab{border-radius:3px;margin:10px 0 10px 10px}
 .ab.st{background:linear-gradient(180deg,var(--navy),var(--navy-mid))}
 .ab.te{background:linear-gradient(180deg,var(--gold),var(--gold-warm))}
+.ab.sc{background:linear-gradient(180deg,#7b2880,#a850b0)}
 .abody{padding:11px 13px}
 .an{font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:3px}
 .aw2{font-size:12.5px;color:var(--txt-soft);margin-bottom:6px}
@@ -227,6 +231,7 @@ input,select,textarea,button{font-family:var(--font)}
 }
 .tt.ast{background:var(--navy-pale);color:var(--navy);border-color:var(--navy-mid)}
 .tt.ate{background:var(--gold-pale);color:var(--gold-deep);border-color:var(--gold-warm)}
+.tt.asc{background:var(--green-p);color:var(--green);border-color:var(--green)}
 
 /* FILE */
 .fdrop{
@@ -322,7 +327,7 @@ input,select,textarea,button{font-family:var(--font)}
 @keyframes rot{to{transform:rotate(360deg)}}
 
 @media(max-width:580px){
-  .stat-row{grid-template-columns:1fr 1fr}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
   .fg{grid-template-columns:1fr}.ff{grid-column:1}
   .sg{grid-template-columns:1fr}.ar{display:none}
 }
@@ -395,6 +400,10 @@ input,select,textarea,button{font-family:var(--font)}
       <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3060b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
       <div class="sc-n" id="s2">0</div><div class="sc-l">ผลงานครู/บุคลากร</div>
     </div>
+    <div class="sc e">
+      <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7b2880" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="sc-n" id="s4">0</div><div class="sc-l">ผลงานสถานศึกษา</div>
+    </div>
     <div class="sc d">
       <div class="sc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
       <div class="sc-n" id="s3">0</div><div class="sc-l">เหรียญทอง/ชนะเลิศ</div>
@@ -409,7 +418,7 @@ input,select,textarea,button{font-family:var(--font)}
     </div>
     <div class="cb" style="padding-bottom:10px">
       <div class="fbar">
-        <select id="ft" onchange="renderList()"><option value="">ทุกประเภท</option><option value="student">นักเรียน</option><option value="teacher">ครู/บุคลากร</option></select>
+        <select id="ft" onchange="renderList()"><option value="">ทุกประเภท</option><option value="student">นักเรียน</option><option value="teacher">ครู/บุคลากร</option><option value="school">สถานศึกษา</option></select>
         <select id="fs" onchange="renderList()"><option value="">ทุกกลุ่มสาระ</option></select>
         <select id="fl" onchange="renderList()"><option value="">ทุกระดับ</option><option value="นานาชาติ">นานาชาติ</option><option value="ประเทศ">ประเทศ</option><option value="ภูมิภาค">ภูมิภาค</option><option value="จังหวัด">จังหวัด</option><option value="เขตพื้นที่">เขตพื้นที่</option></select>
         <input type="text" id="fq" placeholder="ค้นหาชื่อ รางวัล หน่วยงาน…" oninput="renderList()">
@@ -467,11 +476,15 @@ input,select,textarea,button{font-family:var(--font)}
         <div class="ttog" style="margin-bottom:20px">
           <button class="tt ast" id="tts" onclick="setType('student')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            ผลงานนักเรียน
+            นักเรียน
           </button>
           <button class="tt" id="ttt" onclick="setType('teacher')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            ผลงานครู/บุคลากร
+            ครู/บุคลากร
+          </button>
+          <button class="tt" id="ttc" onclick="setType('school')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            สถานศึกษา
           </button>
         </div>
 
@@ -511,7 +524,7 @@ input,select,textarea,button{font-family:var(--font)}
               <option value="นานาชาติ">นานาชาติ</option>
             </select>
           </div>
-          <div class="fi">
+          <div class="fi" id="fsb-wrap">
             <label>กลุ่มสาระ / กิจกรรม<span class="rq">*</span></label>
             <select id="fsb" onchange="toggleOther('fsb','fsbo')">
               <option value="">— เลือก —</option>
@@ -564,6 +577,31 @@ input,select,textarea,button{font-family:var(--font)}
                 <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
               </select>
               <input type="text" id="fdvo" placeholder="ระบุประเภทการพัฒนา…" style="display:none;margin-top:5px">
+            </div>
+          </div>
+        </div>
+
+        <div id="csec" style="display:none">
+          <div class="sl" style="margin-top:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>ข้อมูลผลงานสถานศึกษา</div>
+          <div class="fg">
+            <div class="fi ff"><label>ผู้รับผิดชอบ / ฝ่ายงาน</label><input type="text" id="fdept" placeholder="เช่น ฝ่ายวิชาการ, ฝ่ายบริหารงานบุคคล"></div>
+            <div class="fi ff">
+              <label>ประเภทผลงานสถานศึกษา</label>
+              <select id="fstype" onchange="toggleOther('fstype','fstypeo')">
+                <option value="">— เลือก —</option>
+                <option>โรงเรียนต้นแบบ / โรงเรียนมาตรฐาน</option>
+                <option>โรงเรียนคุณธรรม</option>
+                <option>โรงเรียนพระราชทาน</option>
+                <option>โรงเรียนวิถีพุทธ</option>
+                <option>โรงเรียนสีเขียว / สิ่งแวดล้อม</option>
+                <option>โรงเรียน TO BE NUMBER ONE</option>
+                <option>โรงเรียนเศรษฐกิจพอเพียง</option>
+                <option>Best Practice ระดับโรงเรียน</option>
+                <option>ผ่านการประเมินคุณภาพภายนอก</option>
+                <option>นวัตกรรม / โครงการเด่น</option>
+                <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
+              </select>
+              <input type="text" id="fstypeo" placeholder="ระบุประเภทผลงาน…" style="display:none;margin-top:5px">
             </div>
           </div>
         </div>
@@ -657,9 +695,10 @@ input,select,textarea,button{font-family:var(--font)}
     <div class="cb" style="padding-bottom:10px">
       <div class="fbar">
         <select id="cf-type" onchange="renderCharts()">
-          <option value="">ทั้งหมด (นักเรียน + ครู)</option>
+          <option value="">ทั้งหมด (นักเรียน + ครู + สถานศึกษา)</option>
           <option value="student">เฉพาะผลงานนักเรียน</option>
           <option value="teacher">เฉพาะผลงานครู/บุคลากร</option>
+          <option value="school">เฉพาะผลงานสถานศึกษา</option>
         </select>
         <select id="cf-subj" onchange="renderCharts()">
           <option value="">ทุกกลุ่มสาระ</option>
@@ -685,7 +724,7 @@ input,select,textarea,button{font-family:var(--font)}
     <div class="card" style="margin:0">
       <div class="ch">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
-        <span class="ct">สัดส่วน นักเรียน : ครู</span>
+        <span class="ct">สัดส่วนตามประเภทผลงาน</span>
       </div>
       <div class="cb" id="ch-pie1" style="text-align:center"></div>
     </div>
@@ -802,8 +841,21 @@ function setType(t){
   ctype=t;
   document.getElementById('tts').className='tt'+(t==='student'?' ast':'');
   document.getElementById('ttt').className='tt'+(t==='teacher'?' ate':'');
+  document.getElementById('ttc').className='tt'+(t==='school'?' asc':'');
   document.getElementById('ssec').style.display=t==='student'?'':'none';
   document.getElementById('tsec').style.display=t==='teacher'?'':'none';
+  document.getElementById('csec').style.display=t==='school'?'':'none';
+  // ซ่อนกลุ่มสาระเมื่อเลือกสถานศึกษา
+  const sbw=document.getElementById('fsb-wrap');
+  if(sbw){
+    sbw.style.display=t==='school'?'none':'';
+    const lbl=sbw.querySelector('label');
+    if(lbl){
+      const req=lbl.querySelector('.rq');
+      if(t==='school'&&req)req.style.display='none';
+      else if(req)req.style.display='';
+    }
+  }
 }
 function dov(e){e.preventDefault();document.getElementById('fdrop').classList.add('drag');}
 function dol(){document.getElementById('fdrop').classList.remove('drag');}
@@ -839,7 +891,8 @@ async function doSub(){
   const lv=document.getElementById('flv').value;
   const sb=valOrOther('fsb','fsbo');
   const og=document.getElementById('fog').value.trim();
-  if(!em||!rc||!aw||!rs||!lv||!sb||!og){toast('กรุณากรอกข้อมูลที่มี * ให้ครบ','err');return;}
+  if(!em||!rc||!aw||!rs||!lv||!og){toast('กรุณากรอกข้อมูลที่มี * ให้ครบ','err');return;}
+  if(ctype!=='school'&&!sb){toast('กรุณาเลือกกลุ่มสาระ','err');return;}
   if(!em.toLowerCase().endsWith('@'+DOMAIN)){toast('กรุณาใช้อีเมล @'+DOMAIN,'err');return;}
   if(ctype==='student'&&!document.getElementById('fnm').value.trim()){toast('กรุณากรอกชื่อนักเรียน','err');return;}
   if(ctype==='teacher'&&!document.getElementById('ftn').value.trim()){toast('กรุณากรอกชื่อครู/บุคลากร','err');return;}
@@ -851,7 +904,8 @@ async function doSub(){
     date:document.getElementById('fdt').value,note:document.getElementById('fnt').value.trim(),
     names:document.getElementById('fnm').value.trim(),classRoom:document.getElementById('fcl').value.trim(),
     coach:document.getElementById('fco').value.trim(),tname:document.getElementById('ftn').value.trim(),
-    rank:valOrOther('frk','frko'),devtype:valOrOther('fdv','fdvo')};
+    rank:valOrOther('frk','frko'),devtype:valOrOther('fdv','fdvo'),
+    department:document.getElementById('fdept').value.trim(),schoolType:valOrOther('fstype','fstypeo')};
 
   if(selFile){
     try{
@@ -880,9 +934,9 @@ async function doSub(){
   clrF();go('dash');
 }
 function clrF(){
-  ['fe','fr','faw','fog','fdt','fnt','fnm','fcl','fco','ftn','frso','fsbo','frko','fdvo'].forEach(x=>{const el=document.getElementById(x);if(el)el.value='';});
-  ['frs','flv','fsb','frk','fdv'].forEach(x=>{const el=document.getElementById(x);if(el)el.selectedIndex=0;});
-  ['frso','fsbo','frko','fdvo'].forEach(x=>{const el=document.getElementById(x);if(el)el.style.display='none';});
+  ['fe','fr','faw','fog','fdt','fnt','fnm','fcl','fco','ftn','frso','fsbo','frko','fdvo','fdept','fstypeo'].forEach(x=>{const el=document.getElementById(x);if(el)el.value='';});
+  ['frs','flv','fsb','frk','fdv','fstype'].forEach(x=>{const el=document.getElementById(x);if(el)el.selectedIndex=0;});
+  ['frso','fsbo','frko','fdvo','fstypeo'].forEach(x=>{const el=document.getElementById(x);if(el)el.style.display='none';});
   if(user)document.getElementById('fe').value=user;frm();
 }
 
@@ -890,6 +944,7 @@ function updStats(){
   document.getElementById('s0').textContent=recs.length;
   document.getElementById('s1').textContent=recs.filter(r=>r.type==='student').length;
   document.getElementById('s2').textContent=recs.filter(r=>r.type==='teacher').length;
+  document.getElementById('s4').textContent=recs.filter(r=>r.type==='school').length;
   document.getElementById('s3').textContent=recs.filter(r=>r.result&&r.result.includes('ทอง')).length;
 }
 function fillSF(){
@@ -913,16 +968,20 @@ function renderList(){
     return;
   }
   wrap.innerHTML=fl.map((r,i)=>{
-    const iS=r.type==='student';
-    const who=iS?(r.names||'').split('\n').join(', ')+(r.classRoom?' · '+r.classRoom:''):(r.tname||'')+(r.rank?' · '+r.rank:'');
+    const isSt=r.type==='student',isTe=r.type==='teacher',isSc=r.type==='school';
+    let who;
+    if(isSt) who=(r.names||'').split('\n').join(', ')+(r.classRoom?' · '+r.classRoom:'');
+    else if(isTe) who=(r.tname||'')+(r.rank?' · '+r.rank:'');
+    else who='🏫 '+(r.department||'สถานศึกษา')+(r.schoolType?' · '+r.schoolType:'');
+    const stripeCls=isSt?'st':(isTe?'te':'sc');
     const cert=r.fileUrl?`<a href="${r.fileUrl}" target="_blank" rel="noopener" class="tg tc" onclick="event.stopPropagation()">เกียรติบัตร</a>`:'';
     return`<div class="ai" onclick="showMd(${recs.indexOf(r)})">
-      <div class="ab ${iS?'st':'te'}"></div>
+      <div class="ab ${stripeCls}"></div>
       <div class="abody">
         <div class="an">${r.award||'—'}</div>
         <div class="aw2">${who||'—'}</div>
         <div class="at">
-          <span class="tg ts">${r.subject||'—'}</span>
+          ${r.subject?`<span class="tg ts">${r.subject}</span>`:(isSc?'<span class="tg" style="background:#f5e8f8;color:#7b2880">สถานศึกษา</span>':'')}
           ${r.org?`<span class="tg to">${r.org}</span>`:''}
           <span class="td">${r.date||r.ts||''}</span>
           ${cert}
@@ -961,20 +1020,34 @@ function certH(u){
 }
 function showMd(i){
   const r=recs[i];if(!r)return;
-  const iS=r.type==='student';
+  const isSt=r.type==='student',isTe=r.type==='teacher',isSc=r.type==='school';
+  const typeLbl=isSt?'นักเรียน':(isTe?'ครู/บุคลากร':'สถานศึกษา');
   document.getElementById('mdtl').textContent=r.award||'รายละเอียด';
-  const rows=[
-    ['ประเภท',iS?'นักเรียน':'ครู/บุคลากร'],
-    ['กลุ่มสาระ',r.subject],['รายการ/รางวัล',r.award],
+  let rows=[
+    ['ประเภท',typeLbl],
+    ['รายการ/รางวัล',r.award],
     ['ผลการแข่งขัน',r.result],['ระดับ',r.level],
-    ['ชื่อ-สกุล',iS?(r.names||'').replace(/\n/g,', '):r.tname],
-    iS?['ชั้น/ห้อง',r.classRoom]:['วิทยฐานะ',r.rank],
-    iS?['ครูที่ปรึกษา',r.coach]:['ประเภทพัฒนา',r.devtype],
-    ['หน่วยงาน',r.org],['วันที่',r.date||r.ts],
-    ['ผู้ลงข้อมูล',r.recorder],['อีเมล',r.email],
-    r.note?['หมายเหตุ',r.note]:null,
-    r.fileUrl?['เกียรติบัตร',certH(r.fileUrl)]:null,
-  ].filter(Boolean);
+  ];
+  if(!isSc) rows.push(['กลุ่มสาระ',r.subject]);
+  if(isSt){
+    rows.push(['ชื่อ-สกุลนักเรียน',(r.names||'').replace(/\n/g,', ')]);
+    rows.push(['ชั้น/ห้อง',r.classRoom]);
+    rows.push(['ครูที่ปรึกษา',r.coach]);
+  }else if(isTe){
+    rows.push(['ชื่อ-สกุลครู',r.tname]);
+    rows.push(['วิทยฐานะ',r.rank]);
+    rows.push(['ประเภทพัฒนา',r.devtype]);
+  }else{
+    rows.push(['ฝ่าย/ผู้รับผิดชอบ',r.department]);
+    rows.push(['ประเภทผลงานสถานศึกษา',r.schoolType]);
+  }
+  rows.push(['หน่วยงาน',r.org]);
+  rows.push(['วันที่',r.date||r.ts]);
+  rows.push(['ผู้ลงข้อมูล',r.recorder]);
+  rows.push(['อีเมล',r.email]);
+  if(r.note) rows.push(['หมายเหตุ',r.note]);
+  if(r.fileUrl) rows.push(['เกียรติบัตร',certH(r.fileUrl)]);
+  rows=rows.filter(x=>x);
   document.getElementById('mdb').innerHTML=rows.map(([k,v])=>`<div class="dr"><div class="dl">${k}</div><div class="dv">${v||'—'}</div></div>`).join('');
   document.getElementById('modal').classList.add('on');
 }
@@ -986,17 +1059,26 @@ async function loadSheets(){
   try{
     const r=await fetch(surl+'?action=getData');const j=await r.json();
     if(j.records&&j.records.length){
-      recs=j.records.map(r=>({id:Date.now()+Math.random(),
-        type:r['ประเภท']==='นักเรียน'?'student':'teacher',
-        subject:r['กลุ่มสาระ']||'',award:r['รายการ/ชื่อรางวัล']||'',
-        result:r['ผลการแข่งขัน']||'',level:r['ระดับ']||'',
-        names:r['ชื่อ-สกุล']||'',tname:r['ชื่อ-สกุล']||'',
-        classRoom:r['ชั้น/ห้อง']||'',rank:r['วิทยฐานะ']||'',
-        devtype:r['ประเภทการพัฒนา']||'',coach:r['ครูที่ปรึกษา']||'',
-        org:r['หน่วยงานที่จัด']||'',date:r['วันที่รับรางวัล']||'',
-        fileUrl:r['ลิงก์เกียรติบัตร']||'',recorder:r['ผู้ลงข้อมูล']||'',
-        email:r['อีเมลผู้บันทึก']||'',note:r['หมายเหตุ']||'',
-        ts:r['วันที่บันทึก']||''}));
+      recs=j.records.map(r=>{
+        const tp=r['ประเภท']||'';
+        let typ='student';
+        if(tp.includes('ครู')||tp.includes('บุคลากร')) typ='teacher';
+        else if(tp.includes('สถานศึกษา')||tp.includes('โรงเรียน')) typ='school';
+        return{
+          id:Date.now()+Math.random(),type:typ,
+          subject:r['กลุ่มสาระ']||'',award:r['รายการ/ชื่อรางวัล']||'',
+          result:r['ผลการแข่งขัน']||'',level:r['ระดับ']||'',
+          names:typ==='student'?(r['ชื่อ-สกุล']||''):'',
+          tname:typ==='teacher'?(r['ชื่อ-สกุล']||''):'',
+          classRoom:r['ชั้น/ห้อง']||'',rank:r['วิทยฐานะ']||'',
+          devtype:r['ประเภทการพัฒนา']||'',coach:r['ครูที่ปรึกษา']||'',
+          department:r['ฝ่าย/ผู้รับผิดชอบ']||'',schoolType:r['ประเภทผลงานสถานศึกษา']||'',
+          org:r['หน่วยงานที่จัด']||'',date:r['วันที่รับรางวัล']||'',
+          fileUrl:r['ลิงก์เกียรติบัตร']||'',recorder:r['ผู้ลงข้อมูล']||'',
+          email:r['อีเมลผู้บันทึก']||'',note:r['หมายเหตุ']||'',
+          ts:r['วันที่บันทึก']||''
+        };
+      });
       save();updStats();renderList();renderSJ();setSyn(true);
       toast(`โหลดสำเร็จ ${recs.length} รายการ`,'ok');
     }else toast('ไม่พบข้อมูลใน Sheets');
@@ -1004,8 +1086,12 @@ async function loadSheets(){
 }
 function doCSV(){
   if(!recs.length){toast('ยังไม่มีข้อมูล','err');return;}
-  const h=['ประเภท','กลุ่มสาระ','รายการ/รางวัล','ผลการแข่งขัน','ระดับ','ชื่อ-สกุล','ชั้น/ห้อง','วิทยฐานะ','ประเภทพัฒนา','ครูที่ปรึกษา','หน่วยงาน','วันที่','อีเมล','ผู้ลงข้อมูล','ลิงก์เกียรติบัตร','หมายเหตุ'];
-  const rows=recs.map(r=>[r.type==='student'?'นักเรียน':'ครู/บุคลากร',r.subject,r.award,r.result,r.level,r.type==='student'?(r.names||'').replace(/\n/g,'|'):(r.tname||''),r.classRoom||'',r.rank||'',r.devtype||'',r.coach||'',r.org,r.date||r.ts,r.email,r.recorder,r.fileUrl||'',r.note||'']);
+  const h=['ประเภท','กลุ่มสาระ','รายการ/รางวัล','ผลการแข่งขัน','ระดับ','ชื่อ-สกุล','ชั้น/ห้อง','วิทยฐานะ','ประเภทพัฒนา','ครูที่ปรึกษา','ฝ่าย/ผู้รับผิดชอบ','ประเภทผลงานสถานศึกษา','หน่วยงาน','วันที่','อีเมล','ผู้ลงข้อมูล','ลิงก์เกียรติบัตร','หมายเหตุ'];
+  const rows=recs.map(r=>{
+    const typLbl=r.type==='student'?'นักเรียน':(r.type==='teacher'?'ครู/บุคลากร':'สถานศึกษา');
+    const nm=r.type==='student'?(r.names||'').replace(/\n/g,'|'):(r.type==='teacher'?(r.tname||''):'');
+    return[typLbl,r.subject||'',r.award,r.result,r.level,nm,r.classRoom||'',r.rank||'',r.devtype||'',r.coach||'',r.department||'',r.schoolType||'',r.org,r.date||r.ts,r.email,r.recorder,r.fileUrl||'',r.note||''];
+  });
   const csv=[h,...rows].map(r=>r.map(c=>'"'+(c+'').replace(/"/g,'""')+'"').join(',')).join('\n');
   const b=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
   const u=URL.createObjectURL(b),a=document.createElement('a');
@@ -1016,7 +1102,7 @@ function doSum(){
   const out=document.getElementById('sumout');
   if(!recs.length){out.innerHTML='<div class="emp"><div class="eit">ยังไม่มีข้อมูล</div></div>';return;}
   const lvs=['นานาชาติ','ประเทศ','ภูมิภาค','จังหวัด','เขตพื้นที่'];
-  let html=`<div class="card"><div class="ch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="ct">ตารางสรุปผลงาน ปีการศึกษา 2568</span></div><div class="cb" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:560px">`;
+  let html=`<div class="card"><div class="ch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="ct">ตารางสรุปผลงาน ปีการศึกษา 2568</span></div><div class="cb" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:620px">`;
   html+=`<tr style="background:var(--navy);color:#fff"><th style="padding:8px 10px;text-align:left;font-weight:500">กลุ่มสาระ</th><th style="padding:8px;font-weight:500">รวม</th><th style="padding:8px;font-weight:500">นร.</th><th style="padding:8px;font-weight:500">ครู</th>`;
   lvs.forEach(l=>html+=`<th style="padding:8px;font-weight:500">${l}</th>`);
   html+=`<th style="padding:8px">🥇</th><th style="padding:8px">🥈</th><th style="padding:8px">🥉</th></tr>`;
@@ -1027,6 +1113,13 @@ function doSum(){
     c.forEach((v,i)=>{if(i<tot.length)tot[i]+=v;});
     html+=`<tr style="background:${si%2?'var(--cream)':'#fff'}"><td style="padding:7px 10px;border-bottom:1px solid var(--border-s);font-weight:500;color:var(--navy-mid)">${s}</td>`+c.map(v=>`<td style="padding:7px;text-align:center;border-bottom:1px solid var(--border-s)">${v||'—'}</td>`).join('')+`</tr>`;
   });
+  // แถวสถานศึกษา
+  const scRecs=recs.filter(r=>r.type==='school');
+  if(scRecs.length){
+    const c=[scRecs.length,0,0,...lvs.map(l=>scRecs.filter(r=>r.level===l).length),scRecs.filter(r=>r.result&&r.result.includes('ทอง')).length,scRecs.filter(r=>r.result&&r.result.includes('เงิน')).length,scRecs.filter(r=>r.result&&r.result.includes('ทองแดง')).length];
+    c.forEach((v,i)=>{if(i<tot.length)tot[i]+=v;});
+    html+=`<tr style="background:#f5e8f8"><td style="padding:7px 10px;border-bottom:1px solid var(--border-s);font-weight:500;color:#7b2880">🏫 ผลงานสถานศึกษา</td>`+c.map(v=>`<td style="padding:7px;text-align:center;border-bottom:1px solid var(--border-s)">${v||'—'}</td>`).join('')+`</tr>`;
+  }
   html+=`<tr style="background:var(--gold-pale);font-weight:600;color:var(--navy)"><td style="padding:8px 10px">รวมทั้งหมด</td>`+tot.map(v=>`<td style="padding:8px;text-align:center">${v}</td>`).join('')+`</tr></table></div></div>`;
   out.innerHTML=html;
 }
@@ -1071,11 +1164,13 @@ function renderCharts(){
   const total=data.length;
   const st=data.filter(r=>r.type==='student').length;
   const te=data.filter(r=>r.type==='teacher').length;
+  const sc=data.filter(r=>r.type==='school').length;
   const gold=data.filter(r=>r.result&&r.result.includes('ทอง')).length;
   document.getElementById('chart-stats').innerHTML=`
     <div class="sc a"><div class="sc-n">${total}</div><div class="sc-l">ผลงานในกลุ่มที่เลือก</div></div>
     <div class="sc b"><div class="sc-n">${st}</div><div class="sc-l">นักเรียน</div></div>
     <div class="sc c"><div class="sc-n">${te}</div><div class="sc-l">ครู/บุคลากร</div></div>
+    <div class="sc e"><div class="sc-n">${sc}</div><div class="sc-l">สถานศึกษา</div></div>
     <div class="sc d"><div class="sc-n">${gold}</div><div class="sc-l">เหรียญทอง</div></div>`;
 
   // ── Bar chart: subjects ──
@@ -1098,12 +1193,13 @@ function renderCharts(){
     }).join('');
   }
 
-  // ── Pie chart: student vs teacher ──
+  // ── Pie chart: types ──
   const p1Data=[
     {n:st,color:'#1a3a6b',label:'นักเรียน'},
-    {n:te,color:'#e6b02a',label:'ครู/บุคลากร'}
+    {n:te,color:'#e6b02a',label:'ครู/บุคลากร'},
+    {n:sc,color:'#7b2880',label:'สถานศึกษา'}
   ].filter(x=>x.n>0);
-  document.getElementById('ch-pie1').innerHTML=drawPie(p1Data,total);
+  document.getElementById('ch-pie1').innerHTML=drawPie(p1Data,st+te+sc);
 
   // ── Pie chart: levels ──
   const LV_COLORS={'นานาชาติ':'#7b2880','ประเทศ':'#5030a8','ภูมิภาค':'#1a3a6b','จังหวัด':'#c8960c','เขตพื้นที่':'#2d7d52'};
