@@ -326,6 +326,14 @@ input,select,textarea,button{font-family:var(--font)}
   .fg{grid-template-columns:1fr}.ff{grid-column:1}
   .sg{grid-template-columns:1fr}.ar{display:none}
 }
+@media print{
+  body{background:#fff}
+  .topbar,.tabnav,.btn,#toast,details{display:none!important}
+  .view{display:block!important;max-width:100%;padding:10px}
+  .view:not(#v-chart){display:none!important}
+  .card{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}
+  .sc{border:1px solid #ccc;box-shadow:none}
+}
 </style>
 </head>
 <body>
@@ -360,6 +368,10 @@ input,select,textarea,button{font-family:var(--font)}
   <div class="tn" id="tn-report" onclick="go('report')">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
     รายงาน &amp; ส่งออก
+  </div>
+  <div class="tn" id="tn-chart" onclick="go('chart')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+    กราฟ &amp; วิเคราะห์
   </div>
 </nav>
 
@@ -474,7 +486,7 @@ input,select,textarea,button{font-family:var(--font)}
           <div class="fi ff"><label>รายการ / ชื่อรางวัล<span class="rq">*</span></label><input type="text" id="faw" placeholder="เช่น รางวัลชนะเลิศ การแข่งขันคณิตศาสตร์โอลิมปิก"></div>
           <div class="fi">
             <label>ผลการแข่งขัน / ระดับรางวัล<span class="rq">*</span></label>
-            <select id="frs">
+            <select id="frs" onchange="toggleOther('frs','frso')">
               <option value="">— เลือก —</option>
               <option value="ชนะเลิศ / เหรียญทอง">ชนะเลิศ / เหรียญทอง</option>
               <option value="รองชนะเลิศอันดับ 1 / เหรียญเงิน">รองชนะเลิศอันดับ 1 / เหรียญเงิน</option>
@@ -484,8 +496,9 @@ input,select,textarea,button{font-family:var(--font)}
               <option value="Best Practice">Best Practice</option>
               <option value="ผ่านการอบรม / พัฒนาตนเอง">ผ่านการอบรม / พัฒนาตนเอง</option>
               <option value="วิทยากร / ผู้ทรงคุณวุฒิ">วิทยากร / ผู้ทรงคุณวุฒิ</option>
-              <option value="อื่นๆ">อื่นๆ</option>
+              <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
             </select>
+            <input type="text" id="frso" placeholder="ระบุผลรางวัล…" style="display:none;margin-top:5px">
           </div>
           <div class="fi">
             <label>ระดับการแข่งขัน<span class="rq">*</span></label>
@@ -500,7 +513,7 @@ input,select,textarea,button{font-family:var(--font)}
           </div>
           <div class="fi">
             <label>กลุ่มสาระ / กิจกรรม<span class="rq">*</span></label>
-            <select id="fsb">
+            <select id="fsb" onchange="toggleOther('fsb','fsbo')">
               <option value="">— เลือก —</option>
               <option>ภาษาไทย</option><option>คณิตศาสตร์</option>
               <option>วิทยาศาสตร์และเทคโนโลยี</option>
@@ -508,7 +521,9 @@ input,select,textarea,button{font-family:var(--font)}
               <option>ศิลปะ</option><option>สุขศึกษาและพลศึกษา</option>
               <option>ภาษาต่างประเทศ</option><option>การงานอาชีพ</option>
               <option>กิจกรรมพัฒนาผู้เรียน</option>
+              <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
             </select>
+            <input type="text" id="fsbo" placeholder="ระบุกลุ่ม/กิจกรรม…" style="display:none;margin-top:5px">
           </div>
           <div class="fi"><label>หน่วยงานที่จัด / มอบรางวัล<span class="rq">*</span></label><input type="text" id="fog" placeholder="เช่น สพฐ., สมาคมคณิตศาสตร์ฯ"></div>
           <div class="fi"><label>วันที่ได้รับรางวัล</label><input type="date" id="fdt"></div>
@@ -529,22 +544,26 @@ input,select,textarea,button{font-family:var(--font)}
             <div class="fi ff"><label>ชื่อ-สกุลครู / บุคลากร<span class="rq">*</span></label><input type="text" id="ftn" placeholder="ชื่อ-สกุลครู/บุคลากร"></div>
             <div class="fi">
               <label>วิทยฐานะ</label>
-              <select id="frk">
+              <select id="frk" onchange="toggleOther('frk','frko')">
                 <option value="">— เลือก —</option>
                 <option>ครูผู้ช่วย</option><option>ครู (ไม่มีวิทยฐานะ)</option>
                 <option>ครูชำนาญการ</option><option>ครูชำนาญการพิเศษ</option>
                 <option>ครูเชี่ยวชาญ</option><option>บุคลากรสนับสนุน</option>
+                <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
               </select>
+              <input type="text" id="frko" placeholder="ระบุวิทยฐานะ…" style="display:none;margin-top:5px">
             </div>
             <div class="fi">
               <label>ประเภทการพัฒนา</label>
-              <select id="fdv">
+              <select id="fdv" onchange="toggleOther('fdv','fdvo')">
                 <option value="">— เลือก —</option>
                 <option>รางวัล / ผลงานทางวิชาการ</option><option>อบรม / สัมมนา</option>
                 <option>ศึกษาดูงาน</option><option>นำเสนอ / เผยแพร่ผลงาน</option>
                 <option>เป็นกรรมการ / ผู้ตรวจ</option><option>วิทยากร</option>
                 <option>นวัตกรรม / สิ่งประดิษฐ์</option>
+                <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
               </select>
+              <input type="text" id="fdvo" placeholder="ระบุประเภทการพัฒนา…" style="display:none;margin-top:5px">
             </div>
           </div>
         </div>
@@ -625,6 +644,86 @@ input,select,textarea,button{font-family:var(--font)}
   <div id="sumout"></div>
 </div>
 
+<!-- ══ CHART ══ -->
+<div class="view" id="v-chart">
+  <div class="ph-t" style="margin-bottom:16px;font-size:19px;font-weight:600;color:var(--navy)">กราฟ &amp; การวิเคราะห์</div>
+
+  <!-- ตัวกรอง -->
+  <div class="card">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+      <span class="ct">เลือกมุมมอง</span>
+    </div>
+    <div class="cb" style="padding-bottom:10px">
+      <div class="fbar">
+        <select id="cf-type" onchange="renderCharts()">
+          <option value="">ทั้งหมด (นักเรียน + ครู)</option>
+          <option value="student">เฉพาะผลงานนักเรียน</option>
+          <option value="teacher">เฉพาะผลงานครู/บุคลากร</option>
+        </select>
+        <select id="cf-subj" onchange="renderCharts()">
+          <option value="">ทุกกลุ่มสาระ</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- การ์ดสรุป -->
+  <div class="stat-row" id="chart-stats" style="margin-top:14px"></div>
+
+  <!-- กราฟแท่งแยกกลุ่มสาระ -->
+  <div class="card">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      <span class="ct">ผลงานตามกลุ่มสาระการเรียนรู้</span>
+    </div>
+    <div class="cb"><div id="ch-bar"></div></div>
+  </div>
+
+  <!-- กราฟวงกลม นักเรียน vs ครู + ระดับ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+    <div class="card" style="margin:0">
+      <div class="ch">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+        <span class="ct">สัดส่วน นักเรียน : ครู</span>
+      </div>
+      <div class="cb" id="ch-pie1" style="text-align:center"></div>
+    </div>
+    <div class="card" style="margin:0">
+      <div class="ch">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5L7 19"/></svg>
+        <span class="ct">สัดส่วนตามระดับการแข่งขัน</span>
+      </div>
+      <div class="cb" id="ch-pie2" style="text-align:center"></div>
+    </div>
+  </div>
+
+  <!-- เหรียญรางวัล -->
+  <div class="card">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <span class="ct">เหรียญรางวัลแยกตามกลุ่มสาระ</span>
+    </div>
+    <div class="cb"><div id="ch-medals"></div></div>
+  </div>
+
+  <!-- หน่วยงานยอดนิยม -->
+  <div class="card">
+    <div class="ch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="ct">หน่วยงานที่จัด/มอบรางวัล (Top 10)</span>
+    </div>
+    <div class="cb"><div id="ch-orgs"></div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:14px">
+    <button class="btn bgh bsm" onclick="window.print()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      พิมพ์ / บันทึก PDF
+    </button>
+  </div>
+</div>
+
 <!-- MODAL -->
 <div class="ov" id="modal" onclick="if(event.target===this)closeMd()">
   <div class="mo">
@@ -640,6 +739,7 @@ input,select,textarea,button{font-family:var(--font)}
 
 <script>
 const DOMAIN='kjst.ac.th',DK='kjst_data_v1',UK='kjst_user',CK='kjst_url';
+const DEFAULT_URL='https://script.google.com/macros/s/AKfycbzrxH2ycoeg8poFt9335SHbgYLO9gTmqHXJttGxL-jKUV2g4b7AqmSxPxSJIes9csvM/exec';
 const SUBJS=['ภาษาไทย','คณิตศาสตร์','วิทยาศาสตร์และเทคโนโลยี','สังคมศึกษา ศาสนา และวัฒนธรรม','ศิลปะ','สุขศึกษาและพลศึกษา','ภาษาต่างประเทศ','การงานอาชีพ','กิจกรรมพัฒนาผู้เรียน'];
 const LB={'นานาชาติ':'li','ประเทศ':'ln','ภูมิภาค':'lr','จังหวัด':'lp','เขตพื้นที่':'la'};
 const RB=r=>{if(!r)return'ro';if(r.includes('ทอง'))return'rg';if(r.includes('เงิน'))return'rs';if(r.includes('ทองแดง'))return'rb';if(r.includes('เกียรติบัตร')||r.includes('Best')||r.includes('Practice'))return'rc';return'ro';};
@@ -649,20 +749,23 @@ let recs=[],user='',ctype='student',selFile=null,surl='';
 function init(){
   try{recs=JSON.parse(localStorage.getItem(DK)||'[]');}catch(e){recs=[];}
   user=localStorage.getItem(UK)||'';
-  surl=localStorage.getItem(CK)||'';
+  surl=localStorage.getItem(CK)||DEFAULT_URL;
   if(user)upUI();
   if(surl){document.getElementById('cfgu').value=surl;setSyn(true);}
   fillSF();updStats();renderList();renderSJ();
+  // ทดสอบเชื่อมต่ออัตโนมัติตอนโหลด
+  if(surl) setTimeout(()=>autoConn(),800);
 }
 function save(){try{localStorage.setItem(DK,JSON.stringify(recs));}catch(e){}}
 
 function go(t){
-  ['dash','form','report'].forEach(x=>{
+  ['dash','form','report','chart'].forEach(x=>{
     document.getElementById('v-'+x).classList.toggle('on',x===t);
     document.getElementById('tn-'+x).classList.toggle('on',x===t);
   });
   if(t==='form')chkGate();
   if(t==='dash'){updStats();renderList();renderSJ();}
+  if(t==='chart')renderCharts();
 }
 
 function handleUser(){
@@ -716,13 +819,25 @@ function pf(f){
 function frm(){selFile=null;document.getElementById('fpv').classList.remove('on');document.getElementById('finp').value='';}
 async function f64(f){return new Promise((r,j)=>{const rd=new FileReader();rd.onload=e=>r(e.target.result);rd.onerror=j;rd.readAsDataURL(f);});}
 
+function toggleOther(selId,inpId){
+  const s=document.getElementById(selId),i=document.getElementById(inpId);
+  if(!s||!i)return;
+  i.style.display=s.value==='อื่นๆ'?'':'none';
+  if(s.value!=='อื่นๆ')i.value='';
+}
+function valOrOther(selId,inpId){
+  const s=document.getElementById(selId),i=document.getElementById(inpId);
+  if(s.value==='อื่นๆ')return (i.value||'').trim();
+  return s.value;
+}
+
 async function doSub(){
   const em=document.getElementById('fe').value.trim();
   const rc=document.getElementById('fr').value.trim();
   const aw=document.getElementById('faw').value.trim();
-  const rs=document.getElementById('frs').value;
+  const rs=valOrOther('frs','frso');
   const lv=document.getElementById('flv').value;
-  const sb=document.getElementById('fsb').value;
+  const sb=valOrOther('fsb','fsbo');
   const og=document.getElementById('fog').value.trim();
   if(!em||!rc||!aw||!rs||!lv||!sb||!og){toast('กรุณากรอกข้อมูลที่มี * ให้ครบ','err');return;}
   if(!em.toLowerCase().endsWith('@'+DOMAIN)){toast('กรุณาใช้อีเมล @'+DOMAIN,'err');return;}
@@ -736,7 +851,7 @@ async function doSub(){
     date:document.getElementById('fdt').value,note:document.getElementById('fnt').value.trim(),
     names:document.getElementById('fnm').value.trim(),classRoom:document.getElementById('fcl').value.trim(),
     coach:document.getElementById('fco').value.trim(),tname:document.getElementById('ftn').value.trim(),
-    rank:document.getElementById('frk').value,devtype:document.getElementById('fdv').value};
+    rank:valOrOther('frk','frko'),devtype:valOrOther('fdv','fdvo')};
 
   if(selFile){
     try{
@@ -765,8 +880,9 @@ async function doSub(){
   clrF();go('dash');
 }
 function clrF(){
-  ['fe','fr','faw','fog','fdt','fnt','fnm','fcl','fco','ftn'].forEach(x=>{const el=document.getElementById(x);if(el)el.value='';});
+  ['fe','fr','faw','fog','fdt','fnt','fnm','fcl','fco','ftn','frso','fsbo','frko','fdvo'].forEach(x=>{const el=document.getElementById(x);if(el)el.value='';});
   ['frs','flv','fsb','frk','fdv'].forEach(x=>{const el=document.getElementById(x);if(el)el.selectedIndex=0;});
+  ['frso','fsbo','frko','fdvo'].forEach(x=>{const el=document.getElementById(x);if(el)el.style.display='none';});
   if(user)document.getElementById('fe').value=user;frm();
 }
 
@@ -930,6 +1046,163 @@ async function testConn(){
     document.getElementById('cst').textContent='❌ '+e.message;
     toast('เชื่อมต่อไม่ได้','err');
   }
+}
+// ══ CHARTS ══════════════════════════════════════
+const C_SUBJ=['#1a3a6b','#2451a0','#3060b8','#5080d0','#c8960c','#e6b02a','#2d7d52','#7b2880','#5030a8'];
+function fillChartFilter(){
+  const s=document.getElementById('cf-subj');
+  if(!s||s.options.length>1)return;
+  SUBJS.forEach(x=>{const o=document.createElement('option');o.value=o.textContent=x;s.appendChild(o);});
+}
+function getChartData(){
+  const t=document.getElementById('cf-type').value;
+  const s=document.getElementById('cf-subj').value;
+  return recs.filter(r=>{
+    if(t&&r.type!==t)return false;
+    if(s&&r.subject!==s)return false;
+    return true;
+  });
+}
+function renderCharts(){
+  fillChartFilter();
+  const data=getChartData();
+
+  // ── Stat cards ──
+  const total=data.length;
+  const st=data.filter(r=>r.type==='student').length;
+  const te=data.filter(r=>r.type==='teacher').length;
+  const gold=data.filter(r=>r.result&&r.result.includes('ทอง')).length;
+  document.getElementById('chart-stats').innerHTML=`
+    <div class="sc a"><div class="sc-n">${total}</div><div class="sc-l">ผลงานในกลุ่มที่เลือก</div></div>
+    <div class="sc b"><div class="sc-n">${st}</div><div class="sc-l">นักเรียน</div></div>
+    <div class="sc c"><div class="sc-n">${te}</div><div class="sc-l">ครู/บุคลากร</div></div>
+    <div class="sc d"><div class="sc-n">${gold}</div><div class="sc-l">เหรียญทอง</div></div>`;
+
+  // ── Bar chart: subjects ──
+  const subjData=SUBJS.map((s,i)=>({name:s,n:data.filter(r=>r.subject===s).length,color:C_SUBJ[i]})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n);
+  if(!subjData.length){
+    document.getElementById('ch-bar').innerHTML='<div class="emp"><div class="eit">ยังไม่มีข้อมูล</div></div>';
+  }else{
+    const mx=Math.max(...subjData.map(x=>x.n));
+    document.getElementById('ch-bar').innerHTML=subjData.map(d=>{
+      const pct=(d.n/mx*100).toFixed(0);
+      return`<div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+          <span style="color:var(--navy);font-weight:500">${d.name}</span>
+          <span style="color:${d.color};font-weight:600">${d.n}</span>
+        </div>
+        <div style="height:18px;background:var(--border-s);border-radius:9px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,${d.color},${d.color}cc);border-radius:9px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10.5px;color:#fff;font-weight:600;transition:width .6s">${pct>15?d.n:''}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Pie chart: student vs teacher ──
+  const p1Data=[
+    {n:st,color:'#1a3a6b',label:'นักเรียน'},
+    {n:te,color:'#e6b02a',label:'ครู/บุคลากร'}
+  ].filter(x=>x.n>0);
+  document.getElementById('ch-pie1').innerHTML=drawPie(p1Data,total);
+
+  // ── Pie chart: levels ──
+  const LV_COLORS={'นานาชาติ':'#7b2880','ประเทศ':'#5030a8','ภูมิภาค':'#1a3a6b','จังหวัด':'#c8960c','เขตพื้นที่':'#2d7d52'};
+  const p2Data=['นานาชาติ','ประเทศ','ภูมิภาค','จังหวัด','เขตพื้นที่'].map(l=>({
+    n:data.filter(r=>r.level===l).length,color:LV_COLORS[l],label:l
+  })).filter(x=>x.n>0);
+  document.getElementById('ch-pie2').innerHTML=drawPie(p2Data,p2Data.reduce((a,b)=>a+b.n,0));
+
+  // ── Medals stacked ──
+  const medalSubjData=SUBJS.map(s=>{
+    const sr=data.filter(r=>r.subject===s);
+    return{
+      name:s,
+      g:sr.filter(r=>r.result&&r.result.includes('ทอง')).length,
+      s:sr.filter(r=>r.result&&r.result.includes('เงิน')).length,
+      b:sr.filter(r=>r.result&&r.result.includes('ทองแดง')).length,
+    };
+  }).filter(x=>x.g+x.s+x.b>0);
+  if(!medalSubjData.length){
+    document.getElementById('ch-medals').innerHTML='<div class="emp"><div class="eit">ยังไม่มีข้อมูลเหรียญรางวัล</div></div>';
+  }else{
+    const mxM=Math.max(...medalSubjData.map(x=>x.g+x.s+x.b));
+    document.getElementById('ch-medals').innerHTML=medalSubjData.map(d=>{
+      const tot=d.g+d.s+d.b;
+      const w=tot/mxM*100;
+      return`<div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+          <span style="color:var(--navy);font-weight:500">${d.name}</span>
+          <span style="color:var(--txt-soft);font-weight:600">${tot} เหรียญ</span>
+        </div>
+        <div style="height:22px;background:var(--border-s);border-radius:11px;overflow:hidden;display:flex;width:${w}%;min-width:60px">
+          ${d.g?`<div style="flex:${d.g};background:linear-gradient(90deg,#e6b02a,#c8960c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">${d.g}🥇</div>`:''}
+          ${d.s?`<div style="flex:${d.s};background:linear-gradient(90deg,#aab0b8,#888);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">${d.s}🥈</div>`:''}
+          ${d.b?`<div style="flex:${d.b};background:linear-gradient(90deg,#cd7f3a,#a35a20);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">${d.b}🥉</div>`:''}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Top organizations ──
+  const orgMap={};
+  data.forEach(r=>{if(r.org)orgMap[r.org]=(orgMap[r.org]||0)+1;});
+  const orgs=Object.entries(orgMap).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  if(!orgs.length){
+    document.getElementById('ch-orgs').innerHTML='<div class="emp"><div class="eit">ยังไม่มีข้อมูล</div></div>';
+  }else{
+    const mxO=orgs[0][1];
+    document.getElementById('ch-orgs').innerHTML=orgs.map(([name,n],i)=>{
+      const pct=(n/mxO*100).toFixed(0);
+      return`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px">
+        <div style="width:22px;height:22px;border-radius:6px;background:${i<3?'var(--gold-pale)':'var(--navy-pale)'};color:${i<3?'var(--gold-deep)':'var(--navy-mid)'};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0">${i+1}</div>
+        <div style="flex:1;min-width:0">
+          <div style="color:var(--navy);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name}</div>
+          <div style="height:5px;background:var(--border-s);border-radius:3px;margin-top:3px"><div style="height:5px;width:${pct}%;background:linear-gradient(90deg,var(--navy),var(--gold-warm));border-radius:3px"></div></div>
+        </div>
+        <div style="color:var(--navy-mid);font-weight:600">${n}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function drawPie(data,total){
+  if(!total||!data.length)return '<div class="emp" style="padding:20px"><div class="eit">ยังไม่มีข้อมูล</div></div>';
+  const cx=80,cy=80,r=60;
+  let a0=-Math.PI/2,paths='';
+  data.forEach(d=>{
+    const a1=a0+d.n/total*Math.PI*2;
+    const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0);
+    const x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const large=(a1-a0)>Math.PI?1:0;
+    paths+=`<path d="M${cx},${cy} L${x0.toFixed(2)},${y0.toFixed(2)} A${r},${r} 0 ${large},1 ${x1.toFixed(2)},${y1.toFixed(2)} Z" fill="${d.color}"/>`;
+    a0=a1;
+  });
+  const legend=data.map(d=>{
+    const pct=(d.n/total*100).toFixed(1);
+    return`<div style="display:flex;align-items:center;gap:6px;font-size:12px;margin-bottom:4px">
+      <div style="width:10px;height:10px;border-radius:2px;background:${d.color};flex-shrink:0"></div>
+      <span style="color:var(--txt)">${d.label}</span>
+      <span style="color:var(--txt-soft);margin-left:auto">${d.n} (${pct}%)</span>
+    </div>`;
+  }).join('');
+  return`<div style="display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap">
+    <svg width="160" height="160" viewBox="0 0 160 160" style="flex-shrink:0">
+      ${paths}
+      <circle cx="80" cy="80" r="32" fill="#fff"/>
+      <text x="80" y="78" text-anchor="middle" font-size="11" fill="var(--txt-soft)">รวม</text>
+      <text x="80" y="94" text-anchor="middle" font-size="18" font-weight="700" fill="var(--navy)">${total}</text>
+    </svg>
+    <div style="text-align:left;min-width:140px">${legend}</div>
+  </div>`;
+}
+
+async function autoConn(){
+  try{
+    const r=await fetch(surl+'?action=getSummary');
+    const j=await r.json();
+    setSyn(true);
+    if(j.total>0) await loadSheets();
+  }catch(e){setSyn(false);}
 }
 init();
 </script>
